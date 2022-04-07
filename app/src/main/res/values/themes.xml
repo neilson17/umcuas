@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.S160419037_UMC" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_theme</item>
+        <item name="colorPrimaryVariant">@color/purple_theme</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/purple_theme</item>
+        <item name="colorSecondaryVariant">@color/purple_theme</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="heading1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="PageTitleExpanded" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

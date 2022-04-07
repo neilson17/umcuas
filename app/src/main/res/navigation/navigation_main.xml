@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/itemHome">
+    <fragment
+        android:id="@+id/itemNews"
+        android:name="com.ubaya.s160419037_umc.view.NewsFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.ubaya.s160419037_umc.view.ProfileFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.ubaya.s160419037_umc.view.MainFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/actionLoginFragment"
+            app:destination="@id/itemLogout"
+            app:popUpTo="@id/itemHome"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionDoctorsFragment"
+            app:destination="@id/itemDoctors" />
+        <action
+            android:id="@+id/actionMedicineFragment"
+            app:destination="@id/itemMedicines" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemDoctors"
+        android:name="com.ubaya.s160419037_umc.view.DoctorsFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_doctors">
+        <action
+            android:id="@+id/actionDoctorDetailFragment"
+            app:destination="@id/doctorDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemMedicines"
+        android:name="com.ubaya.s160419037_umc.view.MedicinesFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_medicines">
+        <action
+            android:id="@+id/actionMedicineDetailFragment"
+            app:destination="@id/medicineDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemAppointments"
+        android:name="com.ubaya.s160419037_umc.view.AppointmentsFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_appointments">
+        <action
+            android:id="@+id/actionDoctorDetailFragmentFromAppointments"
+            app:destination="@id/doctorDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemTransactions"
+        android:name="com.ubaya.s160419037_umc.view.TransactionsFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_transactions" />
+    <fragment
+        android:id="@+id/itemLogout"
+        android:name="com.ubaya.s160419037_umc.view.LoginFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/actionHomeFragment"
+            app:destination="@id/itemHome"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/itemLogout"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorDetailFragment"
+        android:name="com.ubaya.s160419037_umc.view.DoctorDetailFragment"
+        android:label="Doctor Profile"
+        tools:layout="@layout/fragment_doctor_detail">
+        <argument
+            android:name="doctor_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineDetailFragment"
+        android:name="com.ubaya.s160419037_umc.view.MedicineDetailFragment"
+        android:label="Medicine Detail"
+        tools:layout="@layout/fragment_medicine_detail">
+        <argument
+            android:name="medicine_id"
+            app:argType="integer" />
+    </fragment>
+</navigation>
