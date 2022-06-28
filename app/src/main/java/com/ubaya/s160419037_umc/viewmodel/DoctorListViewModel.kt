@@ -13,39 +13,55 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.Doctor
+import com.ubaya.s160419037_umc.util.buildDbDoctor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class DoctorListViewModel(application: Application): AndroidViewModel(application) {
-    val doctorsLiveData = MutableLiveData<ArrayList<Doctor>>()
+class DoctorListViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
+    val doctorsLiveData = MutableLiveData<List<Doctor>>()
     val doctorsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
+    private var job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
+
     fun refresh(){
         doctorsLoadErrorLiveData.value = false
         loadingLiveData.value = true
 
-        queue = Volley.newRequestQueue(getApplication())
-        val url = GlobalData.php_base_url + "doctors.php"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Doctor>>() {}.type
-                val result = Gson().fromJson<ArrayList<Doctor>>(it, sType)
-                doctorsLiveData.value = result
-                loadingLiveData.value = false
-                Log.d("showVolley", it)
-            },
-            {
-                loadingLiveData.value = false
-                doctorsLoadErrorLiveData.value = true
-                Log.d("errorVolley", it.toString())
-            }
-        ).apply {
-            tag = "TAG"
+        launch {
+            val db = buildDbDoctor(getApplication())
+            doctorsLiveData.value = db.doctorDao().selectAllDoctor()
         }
-        queue?.add(stringRequest)
+
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = GlobalData.php_base_url + "doctors.php"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<ArrayList<Doctor>>() {}.type
+//                val result = Gson().fromJson<ArrayList<Doctor>>(it, sType)
+//                doctorsLiveData.value = result
+//                loadingLiveData.value = false
+//                Log.d("showVolley", it)
+//            },
+//            {
+//                loadingLiveData.value = false
+//                doctorsLoadErrorLiveData.value = true
+//                Log.d("errorVolley", it.toString())
+//            }
+//        ).apply {
+//            tag = "TAG"
+//        }
+//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {

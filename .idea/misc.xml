@@ -3,9 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UAS/s160419037_UMC/app/src/main/res/layout/fragment_create_consultation.xml" value="0.536" />
-        <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UAS/s160419037_UMC/app/src/main/res/layout/fragment_doctor_detail.xml" value="0.2911458333333333" />
-        <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UAS/s160419037_UMC/app/src/main/res/layout/fragment_profile.xml" value="0.2911458333333333" />
         <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UTS/s160419037_UMC/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UTS/s160419037_UMC/app/src/main/res/layout/appointment_list_item.xml" value="0.536" />
         <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UTS/s160419037_UMC/app/src/main/res/layout/doctor_list_item.xml" value="0.536" />
@@ -26,6 +23,7 @@
         <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UTS/s160419037_UMC/app/src/main/res/layout/transaction_list_item.xml" value="0.536" />
         <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UTS/s160419037_UMC/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Education/Semester 6/Advanced Native Mobile Programming/Project UTS/s160419037_UMC/app/src/main/res/menu/menu_bottom.xml" value="0.29635416666666664" />
+        <entry key="..\:/Semester 6/ANMP/UAS/umc/app/src/main/res/layout/fragment_create_consultation.xml" value="0.35625" />
         <entry key="..\:/Semester 6/ANMP/UAS/umc/app/src/main/res/layout/fragment_login.xml" value="0.34375" />
       </map>
     </option>

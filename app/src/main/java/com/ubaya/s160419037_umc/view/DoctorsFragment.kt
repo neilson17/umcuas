@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.viewmodel.DoctorListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_doctors.*
+import kotlinx.android.synthetic.main.fragment_news.*
 
 class DoctorsFragment : Fragment() {
     private lateinit var viewModel: DoctorListViewModel
@@ -30,6 +32,9 @@ class DoctorsFragment : Fragment() {
         (activity as MainActivity).bottomNav.visibility = View.GONE
 
         viewModel = ViewModelProvider(this).get(DoctorListViewModel::class.java)
+
+
+
         viewModel.refresh()
 
         recViewDoctors.layoutManager = LinearLayoutManager(context)
@@ -37,31 +42,42 @@ class DoctorsFragment : Fragment() {
 
         observeViewModel()
 
-        doctorsRefreshLayout.setOnRefreshListener {
-            recViewDoctors.visibility = View.GONE
-            textErrorDoctors.visibility = View.GONE
-            progressLoadDoctors.visibility = View.VISIBLE
-            viewModel.refresh()
-            doctorsRefreshLayout.isRefreshing = false
-        }
+//        doctorsRefreshLayout.setOnRefreshListener {
+//            recViewDoctors.visibility = View.GONE
+//            textErrorDoctors.visibility = View.GONE
+//            progressLoadDoctors.visibility = View.VISIBLE
+//            viewModel.refresh()
+//            doctorsRefreshLayout.isRefreshing = false
+//        }
     }
 
     private fun observeViewModel() {
-        viewModel.doctorsLiveData.observe(viewLifecycleOwner){
+        viewModel.doctorsLiveData.observe(viewLifecycleOwner, Observer {
             doctorListAdapter.updateDoctorList(it)
-        }
-        viewModel.doctorsLoadErrorLiveData.observe(viewLifecycleOwner){
-            textErrorDoctors.visibility = if (it) View.VISIBLE else View.GONE
-        }
-        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-            if (it){
+            if (it.isEmpty()) {
+                textErrorDoctors.visibility = View.VISIBLE
                 progressLoadDoctors.visibility = View.VISIBLE
-                recViewDoctors.visibility = View.GONE
             }
             else {
+                textErrorDoctors.visibility = View.GONE
                 progressLoadDoctors.visibility = View.GONE
-                recViewDoctors.visibility = View.VISIBLE
             }
-        }
+        })
+//        viewModel.doctorsLiveData.observe(viewLifecycleOwner){
+//            doctorListAdapter.updateDoctorList(it)
+//        }
+//        viewModel.doctorsLoadErrorLiveData.observe(viewLifecycleOwner){
+//            textErrorDoctors.visibility = if (it) View.VISIBLE else View.GONE
+//        }
+//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
+//            if (it){
+//                progressLoadDoctors.visibility = View.VISIBLE
+//                recViewDoctors.visibility = View.GONE
+//            }
+//            else {
+//                progressLoadDoctors.visibility = View.GONE
+//                recViewDoctors.visibility = View.VISIBLE
+//            }
+//        }
     }
 }
