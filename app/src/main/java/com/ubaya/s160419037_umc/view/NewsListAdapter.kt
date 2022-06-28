@@ -1,5 +1,6 @@
 package com.ubaya.s160419037_umc.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import com.ubaya.s160419037_umc.model.News
 import com.ubaya.s160419037_umc.util.loadImage
 import kotlinx.android.synthetic.main.news_list_item.view.*
 
-class NewsListAdapter (val newsList: ArrayList<News>) : RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>() {
+class NewsListAdapter(val newsList: ArrayList<News>) : RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>() {
     class NewsViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -35,9 +36,10 @@ class NewsListAdapter (val newsList: ArrayList<News>) : RecyclerView.Adapter<New
 
     override fun getItemCount() = newsList.size
 
-    fun updateNewsList(newList : ArrayList<News>){
+    fun updateNewsList(newList : List<News>){
         newsList.clear()
         newsList.addAll(newList)
+
         notifyDataSetChanged()
     }
 }

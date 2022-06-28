@@ -1,13 +1,16 @@
 package com.ubaya.s160419037_umc.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.s160419037_umc.R
+import com.ubaya.s160419037_umc.model.News
 import com.ubaya.s160419037_umc.viewmodel.NewsListViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -34,31 +37,42 @@ class NewsFragment : Fragment() {
 
         observeViewModel()
 
-        newsRefreshLayout.setOnRefreshListener {
-            recViewNews.visibility = View.GONE
-            textErrorNews.visibility = View.GONE
-            progressLoadNews.visibility = View.VISIBLE
-            viewModel.refresh()
-            newsRefreshLayout.isRefreshing = false
-        }
+//        newsRefreshLayout.setOnRefreshListener {
+//            recViewNews.visibility = View.GONE
+//            textErrorNews.visibility = View.GONE
+//            progressLoadNews.visibility = View.VISIBLE
+//            viewModel.refresh()
+//            newsRefreshLayout.isRefreshing = false
+//        }
     }
 
     private fun observeViewModel() {
-        viewModel.newsLiveData.observe(viewLifecycleOwner){
+        viewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
             newsListAdapter.updateNewsList(it)
-        }
-        viewModel.newsLoadErrorLiveData.observe(viewLifecycleOwner){
-            textErrorNews.visibility = if (it) View.VISIBLE else View.GONE
-        }
-        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-            if (it){
+            if (it.isEmpty()) {
+                textErrorNews.visibility = View.VISIBLE
                 progressLoadNews.visibility = View.VISIBLE
-                recViewNews.visibility = View.GONE
             }
             else {
+                textErrorNews.visibility = View.GONE
                 progressLoadNews.visibility = View.GONE
-                recViewNews.visibility = View.VISIBLE
             }
-        }
+        })
+//        viewModel.newsLiveData.observe(viewLifecycleOwner){
+//            newsListAdapter.updateNewsList(it)
+//        }
+//        viewModel.newsLoadErrorLiveData.observe(viewLifecycleOwner){
+//            textErrorNews.visibility = if (it) View.VISIBLE else View.GONE
+//        }
+//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
+//            if (it){
+//                progressLoadNews.visibility = View.VISIBLE
+//                recViewNews.visibility = View.GONE
+//            }
+//            else {
+//                progressLoadNews.visibility = View.GONE
+//                recViewNews.visibility = View.VISIBLE
+//            }
+//        }
     }
 }

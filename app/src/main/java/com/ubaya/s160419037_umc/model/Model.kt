@@ -1,5 +1,10 @@
 package com.ubaya.s160419037_umc.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
 data class User (
     val username: String?,
     var name: String?,
@@ -10,16 +15,24 @@ data class User (
     var photo_url: String?
 )
 
+@Entity
 data class Doctor (
-    val id: Int,
+    @ColumnInfo(name = "name")
     var name: String,
+    @ColumnInfo(name = "gender")
     var gender: String,
+    @ColumnInfo(name = "price")
     var price: Int,
+    @ColumnInfo(name = "photo_url")
     var photo_url: String,
+    @ColumnInfo(name = "doctor_category")
     var doctor_category: String,
+    @ColumnInfo(name = "doctor_category_description")
     var doctor_category_description: String,
-    var practice_hours: ArrayList<String>
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int = 0
+}
 
 data class Medicine (
     val id: Int,
@@ -45,13 +58,20 @@ data class Transaction (
     var time: String
 )
 
+@Entity
 data class News (
-    val id: Int,
+    @ColumnInfo(name = "title")
     var title: String,
+    @ColumnInfo(name = "description")
     var description: String,
+    @ColumnInfo(name = "photo_url")
     var photo_url: String,
+    @ColumnInfo(name = "date")
     var date: String
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int = 0
+}
 
 data class Login (
     var user: User?,

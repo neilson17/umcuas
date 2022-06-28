@@ -39,9 +39,9 @@ class DoctorDetailFragment : Fragment() {
         viewModel.doctorLiveData.observe(viewLifecycleOwner){
             with (it){
                 var ph = ""
-                for (i in 0..practice_hours.size-1) {
-                    ph += if (i != 0) "\n" + practice_hours[i] else practice_hours[i]
-                }
+//                for (i in 0..practice_hours.size-1) {
+//                    ph += if (i != 0) "\n" + practice_hours[i] else practice_hours[i]
+//                }
 
                 textDoctorPracticeHourDetail.text = ph
                 textDoctorNameDetail.text = name
