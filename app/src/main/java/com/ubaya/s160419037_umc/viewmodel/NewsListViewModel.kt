@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.News
 import com.ubaya.s160419037_umc.model.NewsDatabase
+import com.ubaya.s160419037_umc.util.buildDb
 import com.ubaya.s160419037_umc.util.buildDbNews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,32 +38,10 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
 
         launch {
 //            val db = Room.databaseBuilder(getApplication(), NewsDatabase::class.java, "newnewsdb").addMigrations(MIGRATION_1_2).build()
-            val db = buildDbNews(getApplication())
+            val db = buildDb(getApplication())
 
             newsLiveData.value = db.newsDao().selectAllNews()
         }
-
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = GlobalData.php_base_url + "news.php"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<News>>() {}.type
-//                val result = Gson().fromJson<ArrayList<News>>(it, sType)
-//                newsLiveData.value = result
-//                loadingLiveData.value = false
-//                Log.d("showVolley", it)
-//            },
-//            {
-//                loadingLiveData.value = false
-//                newsLoadErrorLiveData.value = true
-//                Log.d("errorVolley", it.toString())
-//            }
-//        ).apply {
-//            tag = "TAG"
-//        }
-//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {
@@ -72,7 +51,7 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
 
     fun addNews(list: List<News>) {
         launch {
-            val db = buildDbNews(getApplication())
+            val db = buildDb(getApplication())
             db.newsDao().insertAll(*list.toTypedArray())
         }
     }

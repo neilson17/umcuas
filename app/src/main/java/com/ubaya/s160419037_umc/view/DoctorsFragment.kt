@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.s160419037_umc.R
+import com.ubaya.s160419037_umc.model.Doctor
 import com.ubaya.s160419037_umc.viewmodel.DoctorListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_doctors.*
@@ -33,7 +34,8 @@ class DoctorsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(DoctorListViewModel::class.java)
 
-
+        var list = listOf(Doctor("Dr Fillmore", "Male", 15000, "https://i.pravatar.cc/500?img=60", "Allergists", "An allergist or immunologist focuses on preventing and treating allergic diseases and conditions. These usually include various types of allergies and asthma."), Doctor("Dr Drewel", "Male", 10000, "https://i.pravatar.cc/500?img=59", "Allergists", "An allergist or immunologist focuses on preventing and treating allergic diseases and conditions. These usually include various types of allergies and asthma."))
+        viewModel.addDoctor(list)
 
         viewModel.refresh()
 

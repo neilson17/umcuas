@@ -16,7 +16,7 @@ abstract class DoctorDatabase:RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
-                context.applicationContext, DoctorDatabase::class.java, "newdb").build()
+                context.applicationContext, DoctorDatabase::class.java, "newdb").addMigrations(MIGRATION_DOCTORS_1_2).build()
 
         operator fun invoke(context: Context) {
             if(instance!=null) {

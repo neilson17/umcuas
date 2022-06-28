@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.model.DoctorDatabase
 import com.ubaya.s160419037_umc.model.NewsDatabase
+import com.ubaya.s160419037_umc.model.UmcDatabase
 import com.ubaya.s160419037_umc.model.UserDatabase
 import java.lang.Exception
 
@@ -30,16 +31,31 @@ fun ImageView.loadImage(url: String?, progressBar: ProgressBar){
         })
 }
 
-val DB_USER = "newuserdb"
-val DB_NEWS = "newnewsdb"
-val DB_DOCTOR = "newdoctordb"
 val DB_NAME = "newdb"
+
+fun buildDb(context: Context): UmcDatabase {
+    val db = Room.databaseBuilder(context, UmcDatabase::class.java, DB_NAME)
+        .addMigrations(MIGRATION_1_2)
+        .build()
+    return db
+}
 
 fun buildDbNews(context: Context):NewsDatabase {
     val db = Room.databaseBuilder(context, NewsDatabase::class.java, DB_NAME)
-        .addMigrations(MIGRATION_NEWS_1_2)
+        .addMigrations(MIGRATION_1_2)
         .build()
     return db
+}
+
+val MIGRATION_1_2 = object :  Migration(1, 2) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "CREATE TABLE `doctor` (`uuid` INTEGER, `name` TEXT, `gender` TEXT, `price` INTEGER, `photo_url` TEXT, `doctor_category` TEXT, `doctor_category_description` TEXT)"
+        )
+        database.execSQL(
+            "INSERT INTO doctor (uuid, name, gender, price, photo_url, doctor_categories_id) VALUES (1, 'Dr Fillmore', 'Male', 15000, 'https://i.pravatar.cc/500?img=60', 1), (2, 'Dr Drewel', 'Male', 10000, 'https://i.pravatar.cc/500?img=59', 1), (3, 'Dr Chu', 'Female', 8000, 'https://i.pravatar.cc/500?img=47', 2), (4, 'Dr Hurter', 'Male', 20000, 'https://i.pravatar.cc/500?img=12', 3), (5, 'Dr Pepper', 'Female', 19000, 'https://i.pravatar.cc/500?img=32', 3), (6, 'Dr Beavers', 'Male', 15000, 'https://i.pravatar.cc/500?img=33', 3), (7, 'Dr Luke Whitesell', 'Male', 16000, 'https://i.pravatar.cc/500?img=51', 4), (8, 'Dr Elfman', 'Male', 10000, 'https://i.pravatar.cc/500?img=52', 4), (9, 'Dr Hopper', 'Female', 11000, 'https://i.pravatar.cc/500?img=36', 5), (10, 'Dr Kaufman', 'Male', 18000, 'https://i.pravatar.cc/500?img=53', 6), (11, 'Dr Albright', 'Male', 18500, 'https://i.pravatar.cc/500?img=54', 6), (12, 'Dr Stone', 'Female', 13000, 'https://i.pravatar.cc/500?img=26', 7), (13, 'Dr White', 'Male', 10000, 'https://i.pravatar.cc/500?img=8', 7), (14, 'Dr Luke', 'Male', 11000, 'https://i.pravatar.cc/500?img=57', 7)"
+        )
+    }
 }
 
 
@@ -53,6 +69,7 @@ val MIGRATION_NEWS_1_2 = object : Migration(1, 2) {
 
 fun buildDbDoctor(context: Context):DoctorDatabase {
     val db = Room.databaseBuilder(context, DoctorDatabase::class.java, DB_NAME)
+        .addMigrations(MIGRATION_DOCTORS_1_2)
         .build()
     return db
 }
@@ -60,7 +77,7 @@ fun buildDbDoctor(context: Context):DoctorDatabase {
 val MIGRATION_DOCTORS_1_2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
-            "INSERT INTO `doctors` (`id`, `name`, `gender`, `price`, `photo_url`, `doctor_categories_id`) VALUES (1, 'Dr Fillmore', 'Male', 15000, 'https://i.pravatar.cc/500?img=60', 1), (2, 'Dr Drewel', 'Male', 10000, 'https://i.pravatar.cc/500?img=59', 1), (3, 'Dr Chu', 'Female', 8000, 'https://i.pravatar.cc/500?img=47', 2), (4, 'Dr Hurter', 'Male', 20000, 'https://i.pravatar.cc/500?img=12', 3), (5, 'Dr Pepper', 'Female', 19000, 'https://i.pravatar.cc/500?img=32', 3), (6, 'Dr Beavers', 'Male', 15000, 'https://i.pravatar.cc/500?img=33', 3), (7, 'Dr Luke Whitesell', 'Male', 16000, 'https://i.pravatar.cc/500?img=51', 4), (8, 'Dr Elfman', 'Male', 10000, 'https://i.pravatar.cc/500?img=52', 4), (9, 'Dr Hopper', 'Female', 11000, 'https://i.pravatar.cc/500?img=36', 5), (10, 'Dr Kaufman', 'Male', 18000, 'https://i.pravatar.cc/500?img=53', 6), (11, 'Dr Albright', 'Male', 18500, 'https://i.pravatar.cc/500?img=54', 6), (12, 'Dr Stone', 'Female', 13000, 'https://i.pravatar.cc/500?img=26', 7), (13, 'Dr White', 'Male', 10000, 'https://i.pravatar.cc/500?img=8', 7), (14, 'Dr Luke', 'Male', 11000, 'https://i.pravatar.cc/500?img=57', 7)"
+            "INSERT INTO doctor (uuid, name, gender, price, photo_url, doctor_categories_id) VALUES (1, 'Dr Fillmore', 'Male', 15000, 'https://i.pravatar.cc/500?img=60', 1), (2, 'Dr Drewel', 'Male', 10000, 'https://i.pravatar.cc/500?img=59', 1), (3, 'Dr Chu', 'Female', 8000, 'https://i.pravatar.cc/500?img=47', 2), (4, 'Dr Hurter', 'Male', 20000, 'https://i.pravatar.cc/500?img=12', 3), (5, 'Dr Pepper', 'Female', 19000, 'https://i.pravatar.cc/500?img=32', 3), (6, 'Dr Beavers', 'Male', 15000, 'https://i.pravatar.cc/500?img=33', 3), (7, 'Dr Luke Whitesell', 'Male', 16000, 'https://i.pravatar.cc/500?img=51', 4), (8, 'Dr Elfman', 'Male', 10000, 'https://i.pravatar.cc/500?img=52', 4), (9, 'Dr Hopper', 'Female', 11000, 'https://i.pravatar.cc/500?img=36', 5), (10, 'Dr Kaufman', 'Male', 18000, 'https://i.pravatar.cc/500?img=53', 6), (11, 'Dr Albright', 'Male', 18500, 'https://i.pravatar.cc/500?img=54', 6), (12, 'Dr Stone', 'Female', 13000, 'https://i.pravatar.cc/500?img=26', 7), (13, 'Dr White', 'Male', 10000, 'https://i.pravatar.cc/500?img=8', 7), (14, 'Dr Luke', 'Male', 11000, 'https://i.pravatar.cc/500?img=57', 7)"
         )
     }
 }
