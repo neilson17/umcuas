@@ -27,7 +27,7 @@ class DoctorListAdapter (val doctorList: ArrayList<Doctor>) : RecyclerView.Adapt
             textDoctorPriceList.text = doctor.price.toString() + "/hour"
             imageDoctorList.loadImage(doctor.photo_url, progressLoadImageDoctorList)
             buttonDoctorDetailList.setOnClickListener {
-                val action = DoctorsFragmentDirections.actionDoctorDetailFragment(doctor.id)
+                val action = DoctorsFragmentDirections.actionDoctorDetailFragment(doctor.uuid)
                 Navigation.findNavController(it).navigate(action)
             }
         }

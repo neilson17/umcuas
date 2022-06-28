@@ -29,7 +29,7 @@ class AppointmentListAdapter(val appointmentList: ArrayList<Appointment>) : Recy
             textDoctorCategoryAppointmentList.text = appointment.doctor.doctor_category
             imageAppointmentList.loadImage(appointment.doctor.photo_url, progressLoadAppointmentList)
             buttonInfoAppointmentList.setOnClickListener {
-                val action = AppointmentsFragmentDirections.actionDoctorDetailFragmentFromAppointments(appointment.doctor.id)
+                val action = AppointmentsFragmentDirections.actionDoctorDetailFragmentFromAppointments(appointment.doctor.uuid)
                 Navigation.findNavController(it).navigate(action)
             }
             buttonCallAppointmentList.setOnClickListener {
