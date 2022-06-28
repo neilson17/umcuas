@@ -36,8 +36,7 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
         loadingLiveData.value = true
 
         launch {
-//            val db = Room.databaseBuilder(
-//                getApplication(), NewsDatabase::class.java, "newnewsdb").build()
+//            val db = Room.databaseBuilder(getApplication(), NewsDatabase::class.java, "newnewsdb").addMigrations(MIGRATION_1_2).build()
             val db = buildDbNews(getApplication())
 
             newsLiveData.value = db.newsDao().selectAllNews()

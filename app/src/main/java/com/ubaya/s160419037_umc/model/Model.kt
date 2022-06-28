@@ -60,6 +60,8 @@ data class Transaction (
 
 @Entity
 data class News (
+    @PrimaryKey(autoGenerate = true)
+    var uuid: Int = 0,
     @ColumnInfo(name = "title")
     var title: String,
     @ColumnInfo(name = "description")
@@ -68,10 +70,11 @@ data class News (
     var photo_url: String,
     @ColumnInfo(name = "date")
     var date: String
-) {
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int = 0
-}
+)
+//{
+//    @PrimaryKey(autoGenerate = true)
+//    var uuid:Int = 0
+//}
 
 data class Login (
     var user: User?,

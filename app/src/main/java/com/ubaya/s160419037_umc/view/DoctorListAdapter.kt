@@ -26,16 +26,16 @@ class DoctorListAdapter (val doctorList: ArrayList<Doctor>) : RecyclerView.Adapt
             textDoctorCategoryList.text = doctor.doctor_category
             textDoctorPriceList.text = doctor.price.toString() + "/hour"
             imageDoctorList.loadImage(doctor.photo_url, progressLoadImageDoctorList)
-            buttonDoctorDetailList.setOnClickListener {
-                val action = DoctorsFragmentDirections.actionDoctorDetailFragment(doctor.uuid)
-                Navigation.findNavController(it).navigate(action)
-            }
+//            buttonDoctorDetailList.setOnClickListener {
+//                val action = DoctorsFragmentDirections.actionDoctorDetailFragment(doctor.uuid)
+//                Navigation.findNavController(it).navigate(action)
+//            }
         }
     }
 
     override fun getItemCount() = doctorList.size
 
-    fun updateDoctorList(newList : ArrayList<Doctor>){
+    fun updateDoctorList(newList : List<Doctor>){
         doctorList.clear()
         doctorList.addAll(newList)
         notifyDataSetChanged()
