@@ -1,183 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="appointment"
+            type="com.ubaya.s160419037_umc.model.Appointment" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    </data>
 
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:background="#6A6DB0"
-                android:tint="#6A6DB0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_error_24" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView13">
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/imageAppointmentList"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/avatarhome" />
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:background="#6A6DB0"
+                    android:tint="#6A6DB0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_error_24"
+                    />
 
-                    <ProgressBar
-                        android:id="@+id/progressLoadAppointmentList"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/imageAppointmentList"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView7"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView13">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Appointment Schedule"
-                android:textAppearance="@style/body2"
-                android:textColor="#FFFFFF"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="#FFFFFF"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:srcCompat="@drawable/ic_baseline_schedule_24" />
+                        <ImageView
+                            android:id="@+id/imageAppointmentList"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/avatarhome"
+                            android:imageUrl="@{appointment.doctor_photo}"
+                            android:progressBar="@{progressLoadAppointmentList}"/>
 
-            <TextView
-                android:id="@+id/textDateAppointmentList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/poppins_bold"
-                android:paddingTop="2dp"
-                android:text="Monday, 10.00-12.00"
-                android:textAppearance="@style/subtitle"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView29"
-                app:layout_constraintStart_toEndOf="@+id/imageView29"
-                app:layout_constraintTop_toTopOf="@+id/imageView29" />
+                        <ProgressBar
+                            android:id="@+id/progressLoadAppointmentList"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/imageAppointmentList"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/textDoctorNameAppointmentList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Dr. Strange"
-                android:textAppearance="@style/subtitle2"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/cardView7"
-                app:layout_constraintTop_toTopOf="@+id/cardView7" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Appointment Schedule"
+                    android:textAppearance="@style/body2"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textDoctorCategoryAppointmentList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Allergist"
-                android:textAppearance="@style/body2"
-                app:layout_constraintStart_toStartOf="@+id/textDoctorNameAppointmentList"
-                app:layout_constraintTop_toBottomOf="@+id/textDoctorNameAppointmentList" />
+                <ImageView
+                    android:id="@+id/imageView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:srcCompat="@drawable/ic_baseline_schedule_24" />
 
-            <Button
-                android:id="@+id/buttonInfoAppointmentList"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
-                android:layout_marginEnd="16dp"
-                android:background="@android:color/transparent"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:textAppearance="@style/subtitle"
-                android:textSize="10sp"
-                app:cornerRadius="50dp"
-                app:icon="@drawable/ic_baseline_info_24"
-                app:iconGravity="textTop"
-                app:iconPadding="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView7"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardView7"
-                app:strokeColor="@android:color/transparent" />
+                <TextView
+                    android:id="@+id/textDateAppointmentList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:paddingTop="2dp"
+                    android:text="Monday, 10.00-12.00"
+                    android:textAppearance="@style/subtitle"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView29"
+                    app:layout_constraintStart_toEndOf="@+id/imageView29"
+                    app:layout_constraintTop_toTopOf="@+id/imageView29" />
 
-            <Button
-                android:id="@+id/buttonMessageAppointmentList"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="16dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="MESSAGE"
-                android:textAppearance="@style/subtitle"
-                android:textSize="12sp"
-                app:cornerRadius="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/buttonInfoAppointmentList"
-                app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+                <TextView
+                    android:id="@+id/textDoctorNameAppointmentList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{appointment.doctor_name}"
+                    android:textAppearance="@style/subtitle2"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/cardView7"
+                    app:layout_constraintTop_toTopOf="@+id/cardView7" />
 
-            <Button
-                android:id="@+id/buttonCallAppointmentList"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="CALL"
-                android:textAppearance="@style/subtitle"
-                android:textSize="12sp"
-                app:cornerRadius="30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/buttonMessageAppointmentList"
-                app:layout_constraintEnd_toStartOf="@+id/buttonMessageAppointmentList"
-                app:layout_constraintTop_toTopOf="@+id/buttonMessageAppointmentList" />
+                <TextView
+                    android:id="@+id/textDoctorCategoryAppointmentList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{appointment.doctor_category}"
+                    android:textAppearance="@style/body2"
+                    app:layout_constraintStart_toStartOf="@+id/textDoctorNameAppointmentList"
+                    app:layout_constraintTop_toBottomOf="@+id/textDoctorNameAppointmentList" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/buttonInfoAppointmentList"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@android:color/transparent"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:textAppearance="@style/subtitle"
+                    android:textSize="10sp"
+                    app:cornerRadius="50dp"
+                    app:icon="@drawable/ic_baseline_info_24"
+                    app:iconGravity="textTop"
+                    app:iconPadding="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardView7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cardView7"
+                    app:strokeColor="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/buttonMessageAppointmentList"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="MESSAGE"
+                    android:textAppearance="@style/subtitle"
+                    android:textSize="12sp"
+                    app:cornerRadius="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonInfoAppointmentList"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+
+                <Button
+                    android:id="@+id/buttonCallAppointmentList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="CALL"
+                    android:textAppearance="@style/subtitle"
+                    android:textSize="12sp"
+                    app:cornerRadius="30dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/buttonMessageAppointmentList"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonMessageAppointmentList"
+                    app:layout_constraintTop_toTopOf="@+id/buttonMessageAppointmentList" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

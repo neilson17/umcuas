@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.s160419037_umc.GlobalData
@@ -42,36 +43,53 @@ class AppointmentsFragment : Fragment() {
 
         observeViewModel()
 
-        appointmentsRefreshLayout.setOnRefreshListener {
-            recViewAppointments.visibility = View.GONE
-            textErrorAppointments.visibility = View.GONE
-            progressLoadAppointments.visibility = View.VISIBLE
-            viewModel.refresh(GlobalData.activeUser.username!!)
-            appointmentsRefreshLayout.isRefreshing = false
-        }
+//        appointmentsRefreshLayout.setOnRefreshListener {
+//            recViewAppointments.visibility = View.GONE
+//            textErrorAppointments.visibility = View.GONE
+//            progressLoadAppointments.visibility = View.VISIBLE
+//            viewModel.refresh(GlobalData.activeUser.username!!)
+//            appointmentsRefreshLayout.isRefreshing = false
+//        }
     }
 
     private fun observeViewModel() {
-        viewModel.appointmentsLiveData.observe(viewLifecycleOwner){
+        viewModel.appointmentsLiveData.observe(viewLifecycleOwner, Observer {
             appointmentListAdapter.updateAppointmentList(it)
-
-            if(it.size == 0){
+            if (it.size == 0) {
                 imageEmptyAppointments.visibility = View.VISIBLE
                 textEmptyAppointments.visibility = View.VISIBLE
             }
-        }
-        viewModel.appointmentsLoadErrorLiveData.observe(viewLifecycleOwner){
-            textErrorAppointments.visibility = if (it) View.VISIBLE else View.GONE
-        }
-        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-            if (it){
+            else if (it.isEmpty()) {
+                textErrorAppointments.visibility = View.VISIBLE
                 progressLoadAppointments.visibility = View.VISIBLE
-                recViewAppointments.visibility = View.GONE
             }
             else {
+                textErrorAppointments.visibility = View.GONE
                 progressLoadAppointments.visibility = View.GONE
-                recViewAppointments.visibility = View.VISIBLE
+                imageEmptyAppointments.visibility = View.GONE
+                textEmptyAppointments.visibility = View.GONE
             }
-        }
+        })
+//        viewModel.appointmentsLiveData.observe(viewLifecycleOwner){
+//            appointmentListAdapter.updateAppointmentList(it)
+//
+//            if(it.size == 0){
+//                imageEmptyAppointments.visibility = View.VISIBLE
+//                textEmptyAppointments.visibility = View.VISIBLE
+//            }
+//        }
+//        viewModel.appointmentsLoadErrorLiveData.observe(viewLifecycleOwner){
+//            textErrorAppointments.visibility = if (it) View.VISIBLE else View.GONE
+//        }
+//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
+//            if (it){
+//                progressLoadAppointments.visibility = View.VISIBLE
+//                recViewAppointments.visibility = View.GONE
+//            }
+//            else {
+//                progressLoadAppointments.visibility = View.GONE
+//                recViewAppointments.visibility = View.VISIBLE
+//            }
+//        }
     }
 }

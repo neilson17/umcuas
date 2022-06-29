@@ -83,7 +83,9 @@ class DoctorDetailFragment : Fragment(), ButtonMakeAppointment {
     override fun onButtonMakeAppointment(v: View, obj: Doctor) {
         val uuid = obj.uuid
         val name = obj.name
-        val action = DoctorDetailFragmentDirections.actionDoctorDetailFragmentToCreateConsultationFragment(uuid, name)
+        val category = obj.doctor_category
+        val photo = obj.photo_url
+        val action = DoctorDetailFragmentDirections.actionDoctorDetailFragmentToCreateConsultationFragment(uuid, name, category, photo)
         Navigation.findNavController(v).navigate(action)
     }
 }

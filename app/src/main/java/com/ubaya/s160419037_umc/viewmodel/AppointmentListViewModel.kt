@@ -34,27 +34,32 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
         appointmentsLoadErrorLiveData.value = false
         loadingLiveData.value = true
 
-        queue = Volley.newRequestQueue(getApplication())
-        val url = GlobalData.php_base_url + "appointments.php?username=$username"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Appointment>>() {}.type
-                val result = Gson().fromJson<ArrayList<Appointment>>(it, sType)
-                appointmentsLiveData.value = result
-                loadingLiveData.value = false
-                Log.d("showVolley", it)
-            },
-            {
-                loadingLiveData.value = false
-                appointmentsLoadErrorLiveData.value = true
-                Log.d("errorVolley", it.toString())
-            }
-        ).apply {
-            tag = "TAG"
+        launch {
+            val db = buildDb(getApplication())
+            appointmentsLiveData.value = db.appointmentDao().selectAllAppointment(username)
         }
-        queue?.add(stringRequest)
+
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = GlobalData.php_base_url + "appointments.php?username=$username"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<ArrayList<Appointment>>() {}.type
+//                val result = Gson().fromJson<ArrayList<Appointment>>(it, sType)
+//                appointmentsLiveData.value = result
+//                loadingLiveData.value = false
+//                Log.d("showVolley", it)
+//            },
+//            {
+//                loadingLiveData.value = false
+//                appointmentsLoadErrorLiveData.value = true
+//                Log.d("errorVolley", it.toString())
+//            }
+//        ).apply {
+//            tag = "TAG"
+//        }
+//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {

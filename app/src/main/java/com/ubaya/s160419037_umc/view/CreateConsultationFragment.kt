@@ -50,12 +50,15 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(AppointmentListViewModel::class.java)
+        val doctorId = CreateConsultationFragmentArgs.fromBundle(requireArguments()).uuid
         var doctorName = CreateConsultationFragmentArgs.fromBundle(requireArguments()).name
+        val doctorCategory = CreateConsultationFragmentArgs.fromBundle(requireArguments()).doctorCategory
+        val doctorPhoto = CreateConsultationFragmentArgs.fromBundle(requireArguments()).doctorPhoto
 
 //        val adapter = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, arrayListOf<Doctor>())
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 //        spinnerDoctors.adapter = adapter
-        dataBinding.appointment = Appointment(GlobalData.activeUser.username.toString(), doctorName)
+        dataBinding.appointment = Appointment(GlobalData.activeUser.username.toString(), doctorId, doctorName, doctorCategory, doctorPhoto)
         dataBinding.dateListener = this
         dataBinding.buttonListener = this
 
@@ -77,9 +80,9 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
     override fun onDateClick(view: View) {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
-        var month = c.get(Calendar.MONTH)
+        val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        activity?.let{ it1-> DatePickerDialog(it1, this, year, month,day).show() }
+        activity?.let{ it1-> DatePickerDialog(it1, this, year, month, day).show() }
     }
 
     override fun onTimeClick(view: View) {
@@ -91,6 +94,7 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
         Calendar.getInstance().let {
+            this.month = month + 1
             it.set(year, month, day)
             dataBinding.root.textConsultationDate.setText(day.toString().padStart(2, '0') + "-" +
                     month.toString().padStart(2, '0') + "-" + year)

@@ -7,8 +7,8 @@ import androidx.room.Query
 
 @Dao
 interface AppointmentDao {
-    @Query("SELECT * FROM appointment")
-    suspend fun selectAllAppointment(): List<Appointment>
+    @Query("SELECT * FROM appointment WHERE user= :username")
+    suspend fun selectAllAppointment(username:String): List<Appointment>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg appointment: Appointment)

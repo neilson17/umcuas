@@ -52,8 +52,14 @@ data class Medicine (
 data class Appointment (
     @ColumnInfo(name = "user")
     val user: String,
-    @ColumnInfo(name = "doctor")
-    val doctor: String,
+    @ColumnInfo(name = "doctor_id")
+    val doctor_id: Int,
+    @ColumnInfo(name = "doctor_name")
+    val doctor_name: String,
+    @ColumnInfo(name = "doctor_category")
+    val doctor_category: String,
+    @ColumnInfo(name = "doctor_photo")
+    val doctor_photo: String,
     @ColumnInfo(name = "time")
     var time: Int = 0
 ) {

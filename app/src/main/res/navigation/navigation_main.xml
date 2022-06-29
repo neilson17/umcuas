@@ -106,5 +106,11 @@
         <argument
             android:name="name"
             app:argType="string" />
+        <argument
+            android:name="doctor_category"
+            app:argType="string" />
+        <argument
+            android:name="doctor_photo"
+            app:argType="string" />
     </fragment>
 </navigation>

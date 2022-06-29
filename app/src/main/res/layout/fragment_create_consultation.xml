@@ -141,7 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:enabled="true"
+                android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -166,7 +168,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:enabled="true"
+                android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -206,7 +210,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="@{appointment.doctor}"
+            android:text="@{appointment.doctor_name}"
             android:textAppearance="@style/body"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView19"
