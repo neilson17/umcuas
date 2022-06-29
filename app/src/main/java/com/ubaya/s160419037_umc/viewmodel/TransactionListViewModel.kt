@@ -20,11 +20,9 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class TransactionListViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
-    val transactionsLiveData = MutableLiveData<ArrayList<Transaction>>()
+    val transactionsLiveData = MutableLiveData<List<Transaction>>()
     val transactionsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
 
     private val job = Job()
     override val coroutineContext: CoroutineContext
@@ -35,7 +33,8 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
         loadingLiveData.value = true
 
         launch {
-//            val db = buildDb(getApplication())
+            val db = buildDb(getApplication())
+            transactionsLiveData.value = db.transactionDao().selectAllTransaction(username)
         }
 
 //        queue = Volley.newRequestQueue(getApplication())
@@ -63,7 +62,7 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
 
     override fun onCleared() {
         super.onCleared()
-        queue?.cancelAll(TAG)
+//        queue?.cancelAll(TAG)
     }
 
     fun addTransaction(list: List<Transaction>) {

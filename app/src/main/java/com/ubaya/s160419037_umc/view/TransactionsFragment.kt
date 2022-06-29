@@ -1,17 +1,23 @@
 package com.ubaya.s160419037_umc.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.viewmodel.TransactionListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_appointments.*
+import kotlinx.android.synthetic.main.fragment_doctors.*
 import kotlinx.android.synthetic.main.fragment_transactions.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TransactionsFragment : Fragment() {
     private lateinit var viewModel: TransactionListViewModel
@@ -32,6 +38,11 @@ class TransactionsFragment : Fragment() {
         imageEmptyTransactionList.visibility = View.GONE
         textEmptyTransactionList.visibility = View.GONE
 
+        val date = Date(1656500460)
+        val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm")
+        var daa = formatter.format(date)
+        Log.d("tesss", daa)
+
         viewModel = ViewModelProvider(this).get(TransactionListViewModel::class.java)
         viewModel.refresh(GlobalData.activeUser.username!!)
 
@@ -40,36 +51,32 @@ class TransactionsFragment : Fragment() {
 
         observeViewModel()
 
-        transactionsRefreshLayout.setOnRefreshListener {
-            recViewTransactions.visibility = View.GONE
-            textErrorTransactions.visibility = View.GONE
-            progressLoadTransactions.visibility = View.VISIBLE
-            viewModel.refresh(GlobalData.activeUser.username!!)
-            transactionsRefreshLayout.isRefreshing = false
-        }
+//        transactionsRefreshLayout.setOnRefreshListener {
+//            recViewTransactions.visibility = View.GONE
+//            textErrorTransactions.visibility = View.GONE
+//            progressLoadTransactions.visibility = View.VISIBLE
+//            viewModel.refresh(GlobalData.activeUser.username!!)
+//            transactionsRefreshLayout.isRefreshing = false
+//        }
     }
 
     private fun observeViewModel() {
-        viewModel.transactionsLiveData.observe(viewLifecycleOwner){
+        viewModel.transactionsLiveData.observe(viewLifecycleOwner, Observer {
             transactionListAdapter.updateTransactionList(it)
-
-            if(it.size == 0){
+            if (it.size == 0) {
                 imageEmptyTransactionList.visibility = View.VISIBLE
                 textEmptyTransactionList.visibility = View.VISIBLE
             }
-        }
-        viewModel.transactionsLoadErrorLiveData.observe(viewLifecycleOwner){
-            textErrorTransactions.visibility = if (it) View.VISIBLE else View.GONE
-        }
-        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-            if (it){
+            else if (it.isEmpty()) {
+                textErrorTransactions.visibility = View.VISIBLE
                 progressLoadTransactions.visibility = View.VISIBLE
-                recViewTransactions.visibility = View.GONE
             }
             else {
+                textErrorTransactions.visibility = View.GONE
                 progressLoadTransactions.visibility = View.GONE
-                recViewTransactions.visibility = View.VISIBLE
+                imageEmptyTransactionList.visibility = View.GONE
+                textEmptyTransactionList.visibility = View.GONE
             }
-        }
+        })
     }
 }
