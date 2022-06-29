@@ -27,7 +27,7 @@ class MedicineListAdapter (val medicineList: ArrayList<Medicine>) : RecyclerView
             textMedicinePriceList.text = medicine.price.toString()
             imageMedicineList.loadImage(medicine.photo_url, progressLoadImageMedicineList)
             buttonMedicineDetailList.setOnClickListener {
-                val action = MedicinesFragmentDirections.actionMedicineDetailFragment(medicine.id)
+                val action = MedicinesFragmentDirections.actionMedicineDetailFragment(medicine.uuid)
                 Navigation.findNavController(it).navigate(action)
             }
         }
