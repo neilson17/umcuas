@@ -119,6 +119,6 @@
     <fragment
         android:id="@+id/stepCounterFragment"
         android:name="com.ubaya.s160419037_umc.view.StepCounterFragment"
-        android:label="fragment_step_counter"
+        android:label="Step Counter"
         tools:layout="@layout/fragment_step_counter" />
 </navigation>
