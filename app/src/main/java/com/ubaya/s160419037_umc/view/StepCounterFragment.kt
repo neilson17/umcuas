@@ -30,19 +30,20 @@ class StepCounterFragment : Fragment(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
     }
 
     override fun onResume() {
         super.onResume()
-
+        sensorManager = activity!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         if(accelerometerSensor == null){
             Toast.makeText(activity!!, "No accelerometer detected", Toast.LENGTH_SHORT).show()
             return
         }
         //daftarkan listener
-        Toast.makeText(activity!!, "No accelerometer detected", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity!!, "Accelerometer detected", Toast.LENGTH_SHORT).show()
         sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_FASTEST)
+        textAccelerometer.text = "test"
     }
 
     override fun onSensorChanged(p0: SensorEvent?) {
@@ -61,6 +62,6 @@ class StepCounterFragment : Fragment(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-        TODO("Not yet implemented")
+        //
     }
 }

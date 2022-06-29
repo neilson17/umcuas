@@ -30,6 +30,9 @@
         <action
             android:id="@+id/actionMedicineFragment"
             app:destination="@id/itemMedicines" />
+        <action
+            android:id="@+id/action_itemHome_to_stepCounterFragment"
+            app:destination="@id/stepCounterFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemDoctors"
@@ -113,4 +116,9 @@
             android:name="doctor_photo"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/stepCounterFragment"
+        android:name="com.ubaya.s160419037_umc.view.StepCounterFragment"
+        android:label="fragment_step_counter"
+        tools:layout="@layout/fragment_step_counter" />
 </navigation>

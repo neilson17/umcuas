@@ -79,6 +79,11 @@ class MainFragment : Fragment() {
             val action = MainFragmentDirections.actionMedicineFragment()
             Navigation.findNavController(view).navigate(action)
         }
+
+        buttonStepCounter.setOnClickListener {
+            val action = MainFragmentDirections.actionItemHomeToStepCounterFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
     private fun updateHome(){
