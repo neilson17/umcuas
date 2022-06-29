@@ -8,19 +8,19 @@ import androidx.room.PrimaryKey
 @Entity
 data class User (
     @PrimaryKey
-    val username: String,
+    var username: String = "",
     @ColumnInfo(name = "name")
-    var name: String?,
+    var name: String = "",
     @ColumnInfo(name = "password")
-    var password: String?,
+    var password: String = "",
     @ColumnInfo(name = "email")
-    var email: String?,
+    var email: String = "",
     @ColumnInfo(name = "phone")
-    var phone: String?,
+    var phone: String = "",
     @ColumnInfo(name = "address")
-    var address: String?,
+    var address: String = "",
     @ColumnInfo(name = "photo_url")
-    var photo_url: String?
+    var photo_url: String = ""
 )
 
 @Entity

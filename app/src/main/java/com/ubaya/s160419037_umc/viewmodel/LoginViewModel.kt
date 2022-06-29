@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.Login
 import com.ubaya.s160419037_umc.model.User
+import com.ubaya.s160419037_umc.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class LoginViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
-    val loginLiveData = MutableLiveData<Login>()
+    val loginLiveData = MutableLiveData<User>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
@@ -41,24 +42,28 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
     }
 
     fun fetch(username: String, password: String){
-        queue = Volley.newRequestQueue(getApplication())
-        val url = GlobalData.php_base_url + "users.php?username=$username&password=$password"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Login>>() {}.type
-                val result = Gson().fromJson<ArrayList<Login>>(it, sType)
-                loginLiveData.value = result[0]
-                Log.d("showVolley", it)
-            },
-            {
-                Log.d("errorVolley", it.toString())
-            }
-        ).apply {
-            tag = "TAG"
+        launch {
+            val db = buildDb(getApplication())
+            loginLiveData.value = db.userDao().login(username, password)
         }
-        queue?.add(stringRequest)
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = GlobalData.php_base_url + "users.php?username=$username&password=$password"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<ArrayList<Login>>() {}.type
+//                val result = Gson().fromJson<ArrayList<Login>>(it, sType)
+//                loginLiveData.value = result[0]
+//                Log.d("showVolley", it)
+//            },
+//            {
+//                Log.d("errorVolley", it.toString())
+//            }
+//        ).apply {
+//            tag = "TAG"
+//        }
+//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {

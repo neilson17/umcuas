@@ -28,3 +28,7 @@ interface ButtonDetailMedicine{
 interface ButtonMakeTransaction{
     fun onButtonMakeTransaction(v: View, obj: Transaction)
 }
+
+interface ButtonLogin{
+    fun onButtonLogin(v: View)
+}

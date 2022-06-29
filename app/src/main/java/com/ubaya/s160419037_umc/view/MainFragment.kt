@@ -120,7 +120,7 @@ class MainFragment : Fragment() {
 
     private fun observeViewModelLogin(){
         viewModelLogin.loginLiveData.observe(viewLifecycleOwner) {
-            GlobalData.activeUser = it.user!!
+            GlobalData.activeUser = it
             GlobalData.loggedIn = true
 
             updateHome()

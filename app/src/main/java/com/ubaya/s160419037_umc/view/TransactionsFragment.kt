@@ -38,10 +38,11 @@ class TransactionsFragment : Fragment() {
         imageEmptyTransactionList.visibility = View.GONE
         textEmptyTransactionList.visibility = View.GONE
 
-        val date = Date(1656500460)
-        val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm")
-        var daa = formatter.format(date)
-        Log.d("tesss", daa)
+//        var tt: Long = 1656500460 * 1000
+//        val date = Date(tt)
+//        val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm")
+//        var daa = formatter.format(date)
+//        Log.d("tesss", daa)
 
         viewModel = ViewModelProvider(this).get(TransactionListViewModel::class.java)
         viewModel.refresh(GlobalData.activeUser.username!!)
