@@ -5,14 +5,21 @@ import androidx.room.Database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
+@Entity
 data class User (
+    @PrimaryKey
     val username: String?,
+    @ColumnInfo(name = "name")
     var name: String?,
+    @ColumnInfo(name = "password")
     var password: String?,
+    @ColumnInfo(name = "email")
     var email: String?,
+    @ColumnInfo(name = "phone")
     var phone: String?,
+    @ColumnInfo(name = "address")
     var address: String?,
+    @ColumnInfo(name = "photo_url")
     var photo_url: String?
 )
 
@@ -33,18 +40,22 @@ data class Doctor (
     @ColumnInfo(name = "doctor_category_description")
     var doctor_category_description: String,
 )
-//{
-//    @PrimaryKey(autoGenerate = true)
-//    var uuid:Int = 0
-//}
 
+@Entity
 data class Medicine (
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val uuid: Int,
+    @ColumnInfo(name = "name")
     var name: String,
+    @ColumnInfo(name = "variant")
     var variant: String,
+    @ColumnInfo(name = "price")
     var price: Int,
+    @ColumnInfo(name = "description")
     var description: String?,
+    @ColumnInfo(name = "photo_url")
     var photo_url: String,
+    @ColumnInfo(name = "medicine_category")
     var medicine_category: String
 )
 
