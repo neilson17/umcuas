@@ -31,9 +31,9 @@ class NewsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
 
-        val list = listOf(News(1, "Mask Required", "Due to this COVID pandemic, you are required to use either one N95 mask or double layered medic 3ply mask when entering our facility.", "https://neilson.id/projectcollege/umc/image/mask.jpg", "April 6th 2022"), News(2,"Free Medicine Delivery", "Our delivery on medicine purchase is now free for customers in Surabaya! The fee is now borne by the government as a form of assistance due to this pandemic.", "https://neilson.id/projectcollege/umc/image/medicine1.jpg", "April 21th 2022"), News(3,"Healthcare Renovation", "Great News incoming! Our west building will be equipped with an elevator now and some new facility.", "https://neilson.id/projectcollege/umc/image/hospital.jpg", "May 1st 2022"), News(4,"Ramadhan Discount", "Get a 10% off discount on all medicines purchase on this week only until June 5th 2022! You have to make the purchase through Ubaya Medical Center application.", "none", "May 28th 2022"), News(5,"New Checkup Category", "Our hospital is now able to check your teeth with our new professional dentist! We make sure your teeth will look as good as diamond!", "none", "June 2nd 2022")
-        )
-        viewModel.addNews(list)
+//        val list = listOf(News(1, "Mask Required", "Due to this COVID pandemic, you are required to use either one N95 mask or double layered medic 3ply mask when entering our facility.", "https://neilson.id/projectcollege/umc/image/mask.jpg", "April 6th 2022"), News(2,"Free Medicine Delivery", "Our delivery on medicine purchase is now free for customers in Surabaya! The fee is now borne by the government as a form of assistance due to this pandemic.", "https://neilson.id/projectcollege/umc/image/medicine1.jpg", "April 21th 2022"), News(3,"Healthcare Renovation", "Great News incoming! Our west building will be equipped with an elevator now and some new facility.", "https://neilson.id/projectcollege/umc/image/hospital.jpg", "May 1st 2022"), News(4,"Ramadhan Discount", "Get a 10% off discount on all medicines purchase on this week only until June 5th 2022! You have to make the purchase through Ubaya Medical Center application.", "none", "May 28th 2022"), News(5,"New Checkup Category", "Our hospital is now able to check your teeth with our new professional dentist! We make sure your teeth will look as good as diamond!", "none", "June 2nd 2022")
+//        )
+//        viewModel.addNews(list)
 
         viewModel.refresh()
 

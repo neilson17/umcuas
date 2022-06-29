@@ -39,7 +39,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/avatarhome" />
+                    app:srcCompat="@drawable/avatarhome"
+                    android:imageUrl="@{news.photo_url}"
+                    android:progressBar="@{progressLoadNewsList}"
+                    />
 
                 <TextView
                     android:id="@+id/textNewsTitleList"

@@ -12,13 +12,23 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.Appointment
+import com.ubaya.s160419037_umc.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class AppointmentListViewModel(application: Application): AndroidViewModel(application) {
-    val appointmentsLiveData = MutableLiveData<ArrayList<Appointment>>()
+class AppointmentListViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
+    val appointmentsLiveData = MutableLiveData<List<Appointment>>()
     val appointmentsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
+
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 
     fun refresh(username: String){
         appointmentsLoadErrorLiveData.value = false
@@ -50,5 +60,12 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
     override fun onCleared() {
         super.onCleared()
         queue?.cancelAll(TAG)
+    }
+
+    fun addAppointment(list: List<Appointment>) {
+        launch {
+            val db = buildDb(getApplication())
+            db.appointmentDao().insertAll(*list.toTypedArray())
+        }
     }
 }

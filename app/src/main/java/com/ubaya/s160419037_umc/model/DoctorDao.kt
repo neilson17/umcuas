@@ -12,4 +12,7 @@ interface DoctorDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg doctor: Doctor)
+
+    @Query("SELECT * FROM doctor WHERE uuid= :id")
+    suspend fun selectDoctor(id:Int): Doctor
 }

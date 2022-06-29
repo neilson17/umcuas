@@ -13,9 +13,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.News
-import com.ubaya.s160419037_umc.model.NewsDatabase
 import com.ubaya.s160419037_umc.util.buildDb
-import com.ubaya.s160419037_umc.util.buildDbNews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

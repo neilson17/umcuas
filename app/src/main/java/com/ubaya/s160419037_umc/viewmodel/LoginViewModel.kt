@@ -14,7 +14,6 @@ import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.Login
 import com.ubaya.s160419037_umc.model.User
-import com.ubaya.s160419037_umc.model.UserDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -33,9 +32,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
 
     fun refresh() {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(),
-                UserDatabase::class.java, "newuserdb").build()
+//            val db = Room.databaseBuilder(
+//                getApplication(),
+//                UserDatabase::class.java, "newuserdb").build()
 
 //            loginLiveData.value = db.userDAO().selectAllUser()
         }

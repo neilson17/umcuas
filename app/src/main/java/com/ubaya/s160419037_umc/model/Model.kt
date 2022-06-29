@@ -1,6 +1,7 @@
 package com.ubaya.s160419037_umc.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -17,6 +18,8 @@ data class User (
 
 @Entity
 data class Doctor (
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int = 0,
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "gender")
@@ -29,10 +32,11 @@ data class Doctor (
     var doctor_category: String,
     @ColumnInfo(name = "doctor_category_description")
     var doctor_category_description: String,
-) {
-    @PrimaryKey(autoGenerate = true)
-    var uuid:Int = 0
-}
+)
+//{
+//    @PrimaryKey(autoGenerate = true)
+//    var uuid:Int = 0
+//}
 
 data class Medicine (
     val id: Int,
@@ -44,11 +48,18 @@ data class Medicine (
     var medicine_category: String
 )
 
+@Entity
 data class Appointment (
-    val user: User,
-    val doctor: Doctor,
-    var time: String
-)
+    @ColumnInfo(name = "user")
+    val user: String,
+    @ColumnInfo(name = "doctor")
+    val doctor: String,
+    @ColumnInfo(name = "time")
+    var time: Int = 0
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int = 0
+}
 
 data class Transaction (
     val user: User,

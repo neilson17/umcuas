@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,23 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TimePicker
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.databinding.FragmentCreateConsultationBinding
+import com.ubaya.s160419037_umc.model.Appointment
 import com.ubaya.s160419037_umc.model.Doctor
+import com.ubaya.s160419037_umc.viewmodel.AppointmentListViewModel
+import com.ubaya.s160419037_umc.viewmodel.DoctorDetailViewModel
 import kotlinx.android.synthetic.main.fragment_create_consultation.*
 import kotlinx.android.synthetic.main.fragment_create_consultation.view.*
 import java.util.*
+import kotlin.math.min
 
 class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListener, ConsultationDateListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+    private lateinit var viewModel: AppointmentListViewModel
     private lateinit var dataBinding: FragmentCreateConsultationBinding
     var year = 0
     var month = 0
@@ -31,19 +41,37 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_consultation, container, false)
+//        return inflater.inflate(R.layout.fragment_create_consultation, container, false)
+        dataBinding = FragmentCreateConsultationBinding.inflate(inflater, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, arrayListOf<Doctor>())
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerDoctors.adapter = adapter
+        viewModel = ViewModelProvider(this).get(AppointmentListViewModel::class.java)
+        var doctorName = CreateConsultationFragmentArgs.fromBundle(requireArguments()).name
+
+//        val adapter = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, arrayListOf<Doctor>())
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        spinnerDoctors.adapter = adapter
+        dataBinding.appointment = Appointment(GlobalData.activeUser.username.toString(), doctorName)
+        dataBinding.dateListener = this
+        dataBinding.buttonListener = this
+
     }
 
     override fun onButtonAddTodo(v: View) {
-        //
+        val c = Calendar.getInstance()
+        c.set(year, month, day, hour, minute, 0)
+
+        dataBinding.appointment?.let {
+            it.time = (c.timeInMillis/1000L).toInt()
+            val list = listOf(it)
+            viewModel.addAppointment(list)
+            Toast.makeText(v.context, "Appointment created", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(v).popBackStack()
+        }
     }
 
     override fun onDateClick(view: View) {
@@ -76,7 +104,7 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
         dataBinding.root.textConsultationTime.setText(
             hourOfDay.toString().padStart(2, '0') + ":" + minute.toString().padStart(2, '0')
         )
-        hour = hourOfDay
+        this.hour = hourOfDay
         this.minute = minute
     }
 }

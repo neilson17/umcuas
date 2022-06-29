@@ -87,30 +87,30 @@ class MainFragment : Fragment() {
         (header.textUsernameDrawer as TextView).text = GlobalData.activeUser.username
         (header.imageDrawer as ImageView).loadImage(GlobalData.activeUser.photo_url, (header.progressLoadDrawer as ProgressBar))
 
-        viewModel = ViewModelProvider(this).get(AppointmentListViewModel::class.java)
-        viewModel.refresh(GlobalData.activeUser.username!!)
-        viewModel.appointmentsLiveData.observe(viewLifecycleOwner){
-            if (it.size > 0) {
-                val appointment = it[it.size - 1]
-                imageDoctorHome.loadImage(appointment.doctor.photo_url, progressLoadDoctorHome)
-                textDoctorNameHome.text = appointment.doctor.name
-                textDoctorDateHome.text = appointment.time
-                buttonCallHome.setOnClickListener {
-                    val builder = AlertDialog.Builder(context!!)
-                    with (builder) {
-                        setMessage("${appointment.doctor.name} will call you back in a minute!\nSorry for the inconvenience :(")
-                        setTitle("Call Failed")
-                        setPositiveButton("OK", null)
-                        create().show()
-                    }
-                }
+//        viewModel = ViewModelProvider(this).get(AppointmentListViewModel::class.java)
+//        viewModel.refresh(GlobalData.activeUser.username!!)
+//        viewModel.appointmentsLiveData.observe(viewLifecycleOwner){
+//            if (it.size > 0) {
+//                val appointment = it[it.size - 1]
+//                imageDoctorHome.loadImage(appointment.doctor.photo_url, progressLoadDoctorHome)
+//                textDoctorNameHome.text = appointment.doctor.name
+//                textDoctorDateHome.text = appointment.time
+//                buttonCallHome.setOnClickListener {
+//                    val builder = AlertDialog.Builder(context!!)
+//                    with (builder) {
+//                        setMessage("${appointment.doctor.name} will call you back in a minute!\nSorry for the inconvenience :(")
+//                        setTitle("Call Failed")
+//                        setPositiveButton("OK", null)
+//                        create().show()
+//                    }
+//                }
 
-                textNoAppHome.visibility = View.GONE
-            }
-            else {
-                cardAppointmentsHome.visibility = View.GONE
-            }
-        }
+//                textNoAppHome.visibility = View.GONE
+//            }
+//            else {
+//                cardAppointmentsHome.visibility = View.GONE
+//            }
+//        }
     }
 
     private fun observeViewModelLogin(){

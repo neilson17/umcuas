@@ -47,20 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:text="Doctors"
+            android:text="Doctor"
             android:textAppearance="@style/body2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Spinner
-            android:id="@+id/spinnerDoctors"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView11"
@@ -73,7 +63,7 @@
             app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerDoctors">
+            app:layout_constraintTop_toBottomOf="@+id/textDoctorNameAppointment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -147,6 +137,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textConsultationDate"
+                android:onClick="@{dateListener::onDateClick}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -171,6 +162,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textConsultationTime"
+                android:onClick="@{dateListener::onTimeClick}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -189,6 +181,7 @@
             android:text="MAKE APPOINTMENT"
             android:textAppearance="@style/subtitle"
             app:cornerRadius="30dp"
+            android:onClick="@{buttonListener::onButtonAddTodo}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -207,6 +200,17 @@
             app:cornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textDoctorNameAppointment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@{appointment.doctor}"
+            android:textAppearance="@style/body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
