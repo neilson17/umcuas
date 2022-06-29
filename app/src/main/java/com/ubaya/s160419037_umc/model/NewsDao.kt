@@ -11,7 +11,7 @@ interface NewsDao {
     suspend fun selectAllNews(): List<News>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg news: News)
+    fun insertAll(vararg news: News)
 }
 
 
