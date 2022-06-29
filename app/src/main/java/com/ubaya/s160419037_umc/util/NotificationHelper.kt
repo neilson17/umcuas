@@ -25,7 +25,7 @@ class NotificationHelper (val context: Context) {
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val channel = NotificationChannel(CHANNEL_ID, CHANNEL_ID,
             NotificationManager.IMPORTANCE_DEFAULT).apply {
-            description = "Todo channel description"
+            description = "Notification channel description"
         }
 
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -48,26 +48,15 @@ class NotificationHelper (val context: Context) {
             .setSmallIcon(R.drawable.logoinlogin)
             .setContentTitle(title)
             .setContentText(message)
+            .setLargeIcon(icon)
             .setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(long_message)
             )
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
 
-        Picasso.get().load(url_photo).into(object: Target {
-            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                notification.setLargeIcon(bitmap)
-            }
-
-            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                notification.setLargeIcon(icon)
-            }
-
-            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
-
-        })
-
-        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification.build())
+        NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notification)
     }
 }
