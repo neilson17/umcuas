@@ -34,15 +34,6 @@ class DoctorsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(DoctorListViewModel::class.java)
 
-        var list = listOf(Doctor(1,"Dr Fillmore", "Male", 15000, "https://i.pravatar.cc/500?img=60", "Allergists", "An allergist or immunologist focuses on preventing and treating allergic diseases and conditions. These usually include various types of allergies and asthma."), Doctor(2,"Dr Drewel", "Male", 10000, "https://i.pravatar.cc/500?img=59", "Allergists", "An allergist or immunologist focuses on preventing and treating allergic diseases and conditions. These usually include various types of allergies and asthma."), Doctor(3, "Dr Chu", "Female", 8000, "https://i.pravatar.cc/500?img=47","Dermatologists","Dermatologists focus on diseases and conditions of the skin, nails, and hair. They treat conditions such as eczema, skin cancer, acne, and psoriasis."), Doctor(4, "Dr Hurter", "Male", 20000, "https://i.pravatar.cc/500?img=12", "Ophthalmologists", "Ophthalmologists specialize in eye and vision care. They treat diseases and conditions of the eyes and can perform eye surgery."), Doctor(5,"Dr Pepper", "Female", 19000, "https://i.pravatar.cc/500?img=32", "Ophthalmologists", "Ophthalmologists specialize in eye and vision care. They treat diseases and conditions of the eyes and can perform eye surgery."), Doctor(6, "Dr Beavers", "Male", 15000, "https://i.pravatar.cc/500?img=33", "Ophthalmologists", "Ophthalmologists specialize in eye and vision care. They treat diseases and conditions of the eyes and can perform eye surgery."), Doctor(7, "Dr Luke Whitesell", "Male", 16000, "https://i.pravatar.cc/500?img=51", "Obstetrician", "Obstetrician/gynecologists (OB/GYNs) provide preventive care and disease management for female health conditions."), Doctor(8, "Dr Elfman", "Male", 10000, "https://i.pravatar.cc/500?img=52", "Obstetrician", "Obstetrician/gynecologists (OB/GYNs) provide preventive care and disease management for female health conditions."), Doctor(9, "Dr Hopper", "Female", 11000, "https://i.pravatar.cc/500?img=36", "Nephrologists", "A nephrologist focuses on kidney care and conditions that affect the kidneys."), Doctor(10, "Dr Kaufman", "Male", 18000, "https://i.pravatar.cc/500?img=53", "Urologists", "Urologists treat conditions of the urinary tract in both males and females. They also focus on male reproductive health."))
-
-//        (11, 'Dr Albright', 'Male', 18500, 'https://i.pravatar.cc/500?img=54', 6),
-//        (12, 'Dr Stone', 'Female', 13000, 'https://i.pravatar.cc/500?img=26', 7),
-//        (13, 'Dr White', 'Male', 10000, 'https://i.pravatar.cc/500?img=8', 7),
-//        (14, 'Dr Luke', 'Male', 11000, 'https://i.pravatar.cc/500?img=57', 7))
-
-        viewModel.addDoctor(list)
-
         viewModel.refresh()
 
         recViewDoctors.layoutManager = LinearLayoutManager(context)
