@@ -15,16 +15,21 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.databinding.FragmentCreateConsultationBinding
 import com.ubaya.s160419037_umc.model.Appointment
 import com.ubaya.s160419037_umc.model.Doctor
+import com.ubaya.s160419037_umc.util.AppointmentWorker
 import com.ubaya.s160419037_umc.viewmodel.AppointmentListViewModel
 import com.ubaya.s160419037_umc.viewmodel.DoctorDetailViewModel
 import kotlinx.android.synthetic.main.fragment_create_consultation.*
 import kotlinx.android.synthetic.main.fragment_create_consultation.view.*
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListener, ConsultationDateListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -67,6 +72,8 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
     override fun onButtonAddTodo(v: View) {
         val c = Calendar.getInstance()
         c.set(year, month, day, hour, minute, 0)
+        val today = Calendar.getInstance()
+        val diff = c.timeInMillis / 1000L - today.timeInMillis / 1000L
 
         dataBinding.appointment?.let {
             it.time = (c.timeInMillis/1000L).toInt()
@@ -74,6 +81,22 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
             viewModel.addAppointment(list)
             Toast.makeText(v.context, "Appointment created", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(v).popBackStack()
+
+            // Membuat work request
+            val myWorkRequest = OneTimeWorkRequestBuilder<AppointmentWorker>()
+                .setInitialDelay(diff, TimeUnit.SECONDS)
+                .setInputData(
+                    workDataOf(
+                        "title" to "Appointment Reminder",
+                        "message" to "${it.doctor_name} is waiting for your appointment!",
+                        "long_message" to "Your appointment with ${it.doctor_name} (${it.doctor_category}) on ${it.time} is starting soon",
+                        "url_photo" to "${it.doctor_photo}"
+                    )
+                )
+                .build()
+
+            // Antrikan ke work manager
+            WorkManager.getInstance(requireContext()).enqueue(myWorkRequest)
         }
     }
 
