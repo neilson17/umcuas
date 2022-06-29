@@ -24,8 +24,6 @@ class DoctorDetailViewModel(application: Application) : AndroidViewModel(applica
     private val job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
 
     fun fetch(doctor_id: Int){
         launch {
@@ -36,6 +34,6 @@ class DoctorDetailViewModel(application: Application) : AndroidViewModel(applica
 
     override fun onCleared() {
         super.onCleared()
-        queue?.cancelAll(TAG)
+//        queue?.cancelAll(TAG)
     }
 }

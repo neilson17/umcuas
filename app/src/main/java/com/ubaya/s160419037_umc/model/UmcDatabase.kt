@@ -5,13 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [User::class, Medicine::class, News::class, Doctor::class, Appointment::class], version = 1)
+@Database(entities = [User::class, Medicine::class, News::class, Doctor::class, Appointment::class, Transaction::class], version = 1)
 abstract class UmcDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun medicineDao(): MedicineDao
     abstract fun newsDao(): NewsDao
     abstract fun doctorDao(): DoctorDao
     abstract fun appointmentDao(): AppointmentDao
+    abstract fun transactionDao(): TransactionDao
 
     companion object {
         @Volatile private var instance: UmcDatabase ?= null

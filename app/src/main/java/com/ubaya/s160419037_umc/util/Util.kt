@@ -7,12 +7,10 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.ubaya.s160419037_umc.R
-import com.ubaya.s160419037_umc.model.Doctor
 import com.ubaya.s160419037_umc.model.UmcDatabase
 import java.lang.Exception
 import java.util.concurrent.Executors

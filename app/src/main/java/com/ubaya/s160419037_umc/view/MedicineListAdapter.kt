@@ -13,7 +13,7 @@ import com.ubaya.s160419037_umc.model.Medicine
 import com.ubaya.s160419037_umc.util.loadImage
 import kotlinx.android.synthetic.main.medicine_list_item.view.*
 
-class MedicineListAdapter (val medicineList: ArrayList<Medicine>) : RecyclerView.Adapter<MedicineListAdapter.MedicineViewHolder>() {
+class MedicineListAdapter (val medicineList: ArrayList<Medicine>) : RecyclerView.Adapter<MedicineListAdapter.MedicineViewHolder>(), ButtonDetailMedicine {
     class MedicineViewHolder(var view: MedicineListItemBinding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicineViewHolder {
@@ -25,6 +25,7 @@ class MedicineListAdapter (val medicineList: ArrayList<Medicine>) : RecyclerView
     override fun onBindViewHolder(holder: MedicineViewHolder, position: Int) {
         val medicine = medicineList[position]
         holder.view.medicine = medicine
+        holder.view.buttonDetailMedListener = this
 //        with (holder.view){
 //            textMedicineNameList.text = medicine.name
 //            textMedicineVariantList.text = medicine.variant
@@ -43,5 +44,11 @@ class MedicineListAdapter (val medicineList: ArrayList<Medicine>) : RecyclerView
         medicineList.clear()
         medicineList.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    override fun onButtonDetailMedicine(v: View) {
+        val uuid = v.tag.toString().toInt()
+        val action = MedicinesFragmentDirections.actionMedicineDetailFragment(uuid)
+        Navigation.findNavController(v).navigate(action)
     }
 }

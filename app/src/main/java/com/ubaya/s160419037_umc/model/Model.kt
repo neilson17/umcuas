@@ -78,13 +78,28 @@ data class Appointment (
     var uuid:Int = 0
 }
 
+@Entity
 data class Transaction (
-    val user: User,
-    val medicine: Medicine,
+    @ColumnInfo(name = "user")
+    val user: String,
+    @ColumnInfo(name = "medicine_name")
+    val medicine_name: String,
+    @ColumnInfo(name = "medicine_variant")
+    val medicine_variant: String,
+    @ColumnInfo(name = "medicine_photo")
+    val medicine_photo: String,
+    @ColumnInfo(name = "medicine_price")
+    val medicine_price: Int,
+    @ColumnInfo(name = "quantity")
     var quantity: Int,
+    @ColumnInfo(name = "total")
     var total: Int,
-    var time: String
-)
+    @ColumnInfo(name = "time")
+    var time: Int = 0
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int = 0
+}
 
 @Entity
 data class News (

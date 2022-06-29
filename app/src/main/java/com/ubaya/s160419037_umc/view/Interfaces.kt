@@ -2,9 +2,10 @@ package com.ubaya.s160419037_umc.view
 
 import android.view.View
 import com.ubaya.s160419037_umc.model.Doctor
+import com.ubaya.s160419037_umc.model.Transaction
 
 interface ButtonAddConsultationClickListener{
-    fun onButtonAddTodo(v: View)
+    fun onButtonAddConsultation(v: View)
 }
 
 interface ConsultationDateListener{
@@ -18,4 +19,12 @@ interface ButtonDetailDoctor{
 
 interface ButtonMakeAppointment{
     fun onButtonMakeAppointment(v: View, obj: Doctor)
+}
+
+interface ButtonDetailMedicine{
+    fun onButtonDetailMedicine(v: View)
+}
+
+interface ButtonMakeTransaction{
+    fun onButtonMakeTransaction(v: View, obj: Transaction)
 }

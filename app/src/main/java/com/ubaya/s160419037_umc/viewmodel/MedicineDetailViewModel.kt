@@ -12,35 +12,28 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.Medicine
+import com.ubaya.s160419037_umc.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class MedicineDetailViewModel(application: Application) : AndroidViewModel(application) {
+class MedicineDetailViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
     val medicineLiveData = MutableLiveData<Medicine>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 
     fun fetch(medicine_id: Int){
-        queue = Volley.newRequestQueue(getApplication())
-        val url = GlobalData.php_base_url + "medicines.php?medicine_id=$medicine_id"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Medicine>>() {}.type
-                val result = Gson().fromJson<ArrayList<Medicine>>(it, sType)
-                medicineLiveData.value = result[0]
-                Log.d("showVolley", it)
-            },
-            {
-                Log.d("errorVolley", it.toString())
-            }
-        ).apply {
-            tag = "TAG"
+        launch {
+            val db = buildDb(getApplication())
+            medicineLiveData.value = db.medicineDao().selectMedicine(medicine_id)
         }
-        queue?.add(stringRequest)
     }
 
     override fun onCleared() {
         super.onCleared()
-        queue?.cancelAll(TAG)
+//        queue?.cancelAll(TAG)
     }
 }

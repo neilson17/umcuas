@@ -64,7 +64,7 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
 
     }
 
-    override fun onButtonAddTodo(v: View) {
+    override fun onButtonAddConsultation(v: View) {
         val c = Calendar.getInstance()
         c.set(year, month, day, hour, minute, 0)
 

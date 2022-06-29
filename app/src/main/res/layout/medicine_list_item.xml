@@ -7,7 +7,9 @@
         <variable
             name="medicine"
             type="com.ubaya.s160419037_umc.model.Medicine" />
-
+        <variable
+            name="buttonDetailMedListener"
+            type="com.ubaya.s160419037_umc.view.ButtonDetailMedicine"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,6 +105,8 @@
                     android:layout_marginEnd="16dp"
                     android:backgroundTint="@android:color/transparent"
                     android:elevation="0dp"
+                    android:tag="@{medicine.uuid}"
+                    android:onClick="@{buttonDetailMedListener::onButtonDetailMedicine}"
                     android:text=">"
                     android:textAppearance="@style/subtitle"
                     android:textSize="20sp"
