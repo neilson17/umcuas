@@ -12,43 +12,35 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.model.Medicine
+import com.ubaya.s160419037_umc.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class MedicineListViewModel(application: Application): AndroidViewModel(application) {
-    val medicinesLiveData = MutableLiveData<ArrayList<Medicine>>()
+class MedicineListViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
+    val medicinesLiveData = MutableLiveData<List<Medicine>>()
     val medicinesLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+
+    private var job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 
     fun refresh(){
         medicinesLoadErrorLiveData.value = false
         loadingLiveData.value = true
 
-        queue = Volley.newRequestQueue(getApplication())
-        val url = GlobalData.php_base_url + "medicines.php"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Medicine>>() {}.type
-                val result = Gson().fromJson<ArrayList<Medicine>>(it, sType)
-                medicinesLiveData.value = result
-                loadingLiveData.value = false
-                Log.d("showVolley", it)
-            },
-            {
-                loadingLiveData.value = false
-                medicinesLoadErrorLiveData.value = true
-                Log.d("errorVolley", it.toString())
-            }
-        ).apply {
-            tag = "TAG"
+        launch {
+            val db = buildDb(getApplication())
+            medicinesLiveData.value = db.medicineDao().selectAllMedicine()
         }
-        queue?.add(stringRequest)
     }
 
     override fun onCleared() {
         super.onCleared()
-        queue?.cancelAll(TAG)
+//        queue?.cancelAll(TAG)
     }
 }

@@ -1,104 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="medicine"
+            type="com.ubaya.s160419037_umc.model.Medicine" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    </data>
 
-            <ImageView
-                android:id="@+id/imageMedicineList"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/avatarhome" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textMedicineNameList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="OBH Combi"
-                android:textAppearance="@style/subtitle2"
-                app:layout_constraintStart_toEndOf="@+id/imageMedicineList"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textMedicineVariantList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="botol 5ml"
-                android:textAppearance="@style/body2"
-                app:layout_constraintStart_toStartOf="@+id/textMedicineNameList"
-                app:layout_constraintTop_toBottomOf="@+id/textMedicineNameList" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:theme="@style/subtitle"
-                app:layout_constraintStart_toStartOf="@+id/textMedicineVariantList"
-                app:layout_constraintTop_toBottomOf="@+id/textMedicineVariantList"
-                app:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+                <ImageView
+                    android:id="@+id/imageMedicineList"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/avatarhome"
+                    android:imageUrl="@{medicine.photo_url}"
+                    android:progressBar="@{progressLoadImageMedicineList}" />
 
-            <TextView
-                android:id="@+id/textMedicinePriceList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="3dp"
-                android:text="15000"
-                android:textAppearance="@style/body2"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView22"
-                app:layout_constraintStart_toEndOf="@+id/imageView22"
-                app:layout_constraintTop_toTopOf="@+id/imageView22" />
+                <TextView
+                    android:id="@+id/textMedicineNameList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{medicine.name}"
+                    android:textAppearance="@style/subtitle2"
+                    app:layout_constraintStart_toEndOf="@+id/imageMedicineList"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressLoadImageMedicineList"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageMedicineList"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textMedicineVariantList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{medicine.variant}"
+                    android:textAppearance="@style/body2"
+                    app:layout_constraintStart_toStartOf="@+id/textMedicineNameList"
+                    app:layout_constraintTop_toBottomOf="@+id/textMedicineNameList" />
 
-            <Button
-                android:id="@+id/buttonMedicineDetailList"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="60dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@android:color/transparent"
-                android:elevation="0dp"
-                android:text=">"
-                android:textAppearance="@style/subtitle"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@android:color/transparent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imageView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:theme="@style/subtitle"
+                    app:layout_constraintStart_toStartOf="@+id/textMedicineVariantList"
+                    app:layout_constraintTop_toBottomOf="@+id/textMedicineVariantList"
+                    app:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+
+                <TextView
+                    android:id="@+id/textMedicinePriceList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@{Integer.toString(medicine.price)}"
+                    android:textAppearance="@style/body2"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView22"
+                    app:layout_constraintStart_toEndOf="@+id/imageView22"
+                    app:layout_constraintTop_toTopOf="@+id/imageView22" />
+
+                <ProgressBar
+                    android:id="@+id/progressLoadImageMedicineList"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageMedicineList"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/buttonMedicineDetailList"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:elevation="0dp"
+                    android:text=">"
+                    android:textAppearance="@style/subtitle"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@android:color/transparent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

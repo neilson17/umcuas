@@ -35,7 +35,6 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
         loadingLiveData.value = true
 
         launch {
-//            val db = Room.databaseBuilder(getApplication(), NewsDatabase::class.java, "newnewsdb").addMigrations(MIGRATION_1_2).build()
             val db = buildDb(getApplication())
 
             newsLiveData.value = db.newsDao().selectAllNews()
@@ -45,12 +44,5 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
     override fun onCleared() {
         super.onCleared()
 //        queue?.cancelAll(TAG)
-    }
-
-    fun addNews(list: List<News>) {
-        launch {
-            val db = buildDb(getApplication())
-            db.newsDao().insertAll(*list.toTypedArray())
-        }
     }
 }
