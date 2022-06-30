@@ -10,8 +10,7 @@ class AppointmentWorker (val context: Context, val workerParams: WorkerParameter
             .createNotification(
                 inputData.getString("title").toString(),
                 inputData.getString("message").toString(),
-                inputData.getString("long_message").toString(),
-                inputData.getString("url_photo").toString()
+                inputData.getString("long_message").toString()
             )
         return Result.success()
     }

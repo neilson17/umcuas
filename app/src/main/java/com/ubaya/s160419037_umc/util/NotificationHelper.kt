@@ -32,7 +32,7 @@ class NotificationHelper (val context: Context) {
         notificationManager.createNotificationChannel(channel)
     }
 
-    fun createNotification(title: String, message: String, long_message: String, url_photo: String){
+    fun createNotification(title: String, message: String, long_message: String){
         createNotificationChannel()
 
         // untuk pending intent
