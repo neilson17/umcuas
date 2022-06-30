@@ -20,6 +20,7 @@ import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.databinding.FragmentLoginBinding
 import com.ubaya.s160419037_umc.model.User
+import com.ubaya.s160419037_umc.util.buildDb
 import com.ubaya.s160419037_umc.util.loadImage
 import com.ubaya.s160419037_umc.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,7 +28,7 @@ import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment : Fragment(), ButtonLogin {
+class LoginFragment : Fragment(), ButtonLogin, ButtonGoToRegister {
     private lateinit var viewModel : LoginViewModel
     private lateinit var dataBinding: FragmentLoginBinding
 
@@ -55,16 +56,7 @@ class LoginFragment : Fragment(), ButtonLogin {
 
         dataBinding.users = User("","", "", "", "", "", "")
         dataBinding.buttonLoginListener = this
-
-//        buttonSignup.setOnClickListener {
-//            val builder = AlertDialog.Builder(context!!)
-//            with (builder) {
-//                setMessage("Contact administrator to have your account added! :)")
-//                setTitle("Registration Failed")
-//                setPositiveButton("OK", null)
-//                create().show()
-//            }
-//        }
+        dataBinding.buttonGoToRegisterListener = this
     }
 
     private fun observeViewModel(view: View) {
@@ -103,5 +95,10 @@ class LoginFragment : Fragment(), ButtonLogin {
                 observeViewModel(v)
             } else Toast.makeText(context, "Please fill in your Username or Password first!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onButtonGoToRegister(v: View) {
+        val action = LoginFragmentDirections.actionLoginToRegister()
+        Navigation.findNavController(v).navigate(action)
     }
 }

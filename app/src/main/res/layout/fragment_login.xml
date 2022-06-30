@@ -10,6 +10,9 @@
         <variable
             name="buttonLoginListener"
             type="com.ubaya.s160419037_umc.view.ButtonLogin"/>
+        <variable
+            name="buttonGoToRegisterListener"
+            type="com.ubaya.s160419037_umc.view.ButtonGoToRegister"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +68,8 @@
             android:textColor="#6A6DB0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+            android:onClick="@{buttonGoToRegisterListener::onButtonGoToRegister}"/>
 
         <Button
             android:id="@+id/buttonLogin"

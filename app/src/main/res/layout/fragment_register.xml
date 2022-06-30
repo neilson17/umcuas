@@ -1,231 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout9"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.RegisterFragment" >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/imageView36"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/appbarother"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="user"
+            type="com.ubaya.s160419037_umc.model.User"/>
+        <variable
+            name="buttonRegisterListener"
+            type="com.ubaya.s160419037_umc.view.ButtonRegister"/>
+        <variable
+            name="buttonCancelRegisterListener"
+            type="com.ubaya.s160419037_umc.view.ButtonCancelRegister"/>
+    </data>
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView36"
-        app:layout_constraintVertical_bias="1.0">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.RegisterFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageView36"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/appbarother"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout10"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Username"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView36"
+            app:layout_constraintVertical_bias="1.0">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditUsernameRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textSize="14sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout11"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Name"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout10">
+                android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditNameRegister"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout10"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Username"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditUsernameRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="14sp"
+                        android:text="@={user.username}"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout11"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Name"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout10">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout12"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Password"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout11">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditNameRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="14sp"
+                        android:text="@={user.name}"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditPasswordRegister"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout12"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:inputType="textPassword"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Password"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout11">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout13"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Email"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditPasswordRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:inputType="textPassword"
+                        android:textSize="14sp"
+                        android:text="@={user.password}"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditEmailRegister"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout13"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Email"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditEmailRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="14sp"
+                        android:text="@={user.email}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout14"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Phone Number"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout13">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditPhoneRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:inputType="phone"
+                        android:textSize="14sp"
+                        android:text="@={user.phone}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout16"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Address"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout14">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditAddressRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="14sp"
+                        android:text="@={user.address}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout17"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="Photo URL"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout16">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout14"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Phone Number"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout13">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textEditPhotoUrlRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="14sp"
+                        android:text="@={user.photo_url}"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditPhoneRegister"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/buttonSignUp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:inputType="phone"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="#6A6DB0"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Sign Up"
+                    app:cornerRadius="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout17"
+                    android:onClick="@{buttonRegisterListener::onButtonRegister}"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout16"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Address"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout14">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditAddressRegister"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/buttonCancelSignUp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Cancel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+                    android:onClick="@{buttonCancelRegisterListener::onButtonCancelRegister}"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout17"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="Photo URL"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout16">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textEditPhotoUrlRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/buttonSignUp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#6A6DB0"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Sign Up"
-                app:cornerRadius="7dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout17" />
-
-            <Button
-                android:id="@+id/buttonCancelSignUp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Cancel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

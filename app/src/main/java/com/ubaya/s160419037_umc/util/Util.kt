@@ -62,6 +62,7 @@ fun buildDb(context: Context):UmcDatabase{
             }
         })
         .addMigrations(MIGRATION_1_2)
+        .allowMainThreadQueries()
         .build()
     return db
 }

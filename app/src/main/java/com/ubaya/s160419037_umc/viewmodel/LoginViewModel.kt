@@ -59,4 +59,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
             db.userDao().update(username, name, password, email, phone_number, address)
         }
     }
+
+    fun registerUser(list: List<User>) {
+        launch {
+            val db = buildDb(getApplication())
+            db.userDao().insertAll(*list.toTypedArray())
+        }
+    }
 }
