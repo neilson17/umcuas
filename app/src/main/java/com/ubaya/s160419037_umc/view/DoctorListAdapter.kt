@@ -27,16 +27,6 @@ class DoctorListAdapter (val doctorList: ArrayList<Doctor>) : RecyclerView.Adapt
         val doctor = doctorList[position]
         holder.view.doctor = doctor
         holder.view.buttonDetailListener = this
-//        with (holder.view){
-//            textDoctorNameList.text = doctor.name
-//            textDoctorCategoryList.text = doctor.doctor_category
-//            textDoctorPriceList.text = doctor.price.toString() + "/hour"
-//            imageDoctorList.loadImage(doctor.photo_url, progressLoadImageDoctorList)
-////            buttonDoctorDetailList.setOnClickListener {
-////                val action = DoctorsFragmentDirections.actionDoctorDetailFragment(doctor.uuid)
-////                Navigation.findNavController(it).navigate(action)
-////            }
-//        }
     }
 
     override fun getItemCount() = doctorList.size

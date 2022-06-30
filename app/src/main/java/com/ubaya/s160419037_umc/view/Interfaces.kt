@@ -49,3 +49,7 @@ interface ButtonMedicineMain{
 interface ButtonStepCounter{
     fun onButtonStepCounter(v: View)
 }
+
+interface ButtonResetCount{
+    fun onButtonResetCount(v: View)
+}

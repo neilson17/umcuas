@@ -46,7 +46,6 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_create_consultation, container, false)
         dataBinding = FragmentCreateConsultationBinding.inflate(inflater, container, false)
         return dataBinding.root
     }
@@ -63,7 +62,7 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
 //        val adapter = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, arrayListOf<Doctor>())
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 //        spinnerDoctors.adapter = adapter
-        dataBinding.appointment = Appointment(GlobalData.activeUser.username.toString(), doctorId, doctorName, doctorCategory, doctorPhoto)
+        dataBinding.appointment = Appointment(GlobalData.activeUser.username, doctorId, doctorName, doctorCategory, doctorPhoto)
         dataBinding.dateListener = this
         dataBinding.buttonListener = this
 

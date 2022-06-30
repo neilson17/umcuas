@@ -12,15 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.ubaya.s160419037_umc.R
+import com.ubaya.s160419037_umc.databinding.FragmentStepCounterBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_step_counter.*
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class StepCounterFragment : Fragment(), SensorEventListener {
+class StepCounterFragment : Fragment(), SensorEventListener, ButtonResetCount {
     private lateinit var sensorManager: SensorManager
     private var accelerometerReadings = FloatArray(3)
     private var accelerometerSensor:Sensor? = null
+    private lateinit var dataBinding: FragmentStepCounterBinding
 
     private var previousMagnitude: Float? = null
     private var stepCount = 0
@@ -30,7 +32,8 @@ class StepCounterFragment : Fragment(), SensorEventListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_step_counter, container, false)
+        dataBinding = FragmentStepCounterBinding.inflate(inflater, container, false)
+        return dataBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +48,7 @@ class StepCounterFragment : Fragment(), SensorEventListener {
 
         (activity as MainActivity).bottomNav.visibility = View.GONE
 
-        buttonReset.setOnClickListener {
-            stepCount = 0
-            textStepCount.text = stepCount.toString()
-            previousMagnitude = null
-        }
+        dataBinding.buttonResetCountListener = this
     }
 
     override fun onResume() {
@@ -102,5 +101,11 @@ class StepCounterFragment : Fragment(), SensorEventListener {
         super.onPause()
 
         sensorManager.unregisterListener(this)
+    }
+
+    override fun onButtonResetCount(v: View) {
+        stepCount = 0
+        textStepCount.text = stepCount.toString()
+        previousMagnitude = null
     }
 }

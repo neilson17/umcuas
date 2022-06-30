@@ -24,17 +24,6 @@ class NewsListAdapter(val newsList: ArrayList<News>) : RecyclerView.Adapter<News
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val news = newsList[position]
         holder.view.news = news
-//        with (holder.view){
-//            if (news.photo_url == "none"){
-//                progressLoadNewsList.visibility = View.GONE
-//                imageNewsList.visibility = View.GONE
-//            }
-//            else imageNewsList.loadImage(news.photo_url, progressLoadNewsList)
-//
-//            textNewsTitleList.text = news.title
-//            textDateNewsList.text = news.date
-//            textNewsDescriptionList.text = news.description
-//        }
     }
 
     override fun getItemCount() = newsList.size

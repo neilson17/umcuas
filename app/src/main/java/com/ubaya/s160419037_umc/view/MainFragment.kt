@@ -83,9 +83,9 @@ class MainFragment : Fragment(), SensorEventListener, ButtonAppointmentMain, But
             updateHome()
         }
 
-//        dataBinding.buttonStepCounter = this
         dataBinding.buttonAppointmentMain = this
         dataBinding.buttonMedicineMain = this
+        dataBinding.buttonStepCounter = this
     }
 
     override fun onResume() {

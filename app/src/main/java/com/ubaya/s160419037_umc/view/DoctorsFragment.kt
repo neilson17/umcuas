@@ -62,21 +62,5 @@ class DoctorsFragment : Fragment() {
                 progressLoadDoctors.visibility = View.GONE
             }
         })
-//        viewModel.doctorsLiveData.observe(viewLifecycleOwner){
-//            doctorListAdapter.updateDoctorList(it)
-//        }
-//        viewModel.doctorsLoadErrorLiveData.observe(viewLifecycleOwner){
-//            textErrorDoctors.visibility = if (it) View.VISIBLE else View.GONE
-//        }
-//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-//            if (it){
-//                progressLoadDoctors.visibility = View.VISIBLE
-//                recViewDoctors.visibility = View.GONE
-//            }
-//            else {
-//                progressLoadDoctors.visibility = View.GONE
-//                recViewDoctors.visibility = View.VISIBLE
-//            }
-//        }
     }
 }

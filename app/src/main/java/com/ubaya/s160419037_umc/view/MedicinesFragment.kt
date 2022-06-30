@@ -60,21 +60,5 @@ class MedicinesFragment : Fragment() {
                 progressLoadMedicines.visibility = View.GONE
             }
         })
-//        viewModel.medicinesLiveData.observe(viewLifecycleOwner){
-//            medicineListAdapter.updateMedicineList(it)
-//        }
-//        viewModel.medicinesLoadErrorLiveData.observe(viewLifecycleOwner){
-//            textErrorMedicines.visibility = if (it) View.VISIBLE else View.GONE
-//        }
-//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-//            if (it){
-//                progressLoadMedicines.visibility = View.VISIBLE
-//                recViewMedicines.visibility = View.GONE
-//            }
-//            else {
-//                progressLoadMedicines.visibility = View.GONE
-//                recViewMedicines.visibility = View.VISIBLE
-//            }
-//        }
     }
 }
