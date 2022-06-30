@@ -21,7 +21,7 @@ abstract class UmcDatabase: RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
-                context.applicationContext, UmcDatabase::class.java, "umcdb").addMigrations(MIGRATION_1_2).build()
+                context.applicationContext, UmcDatabase::class.java, "umcdb").addMigrations(MIGRATION_1_2).allowMainThreadQueries().build()
 
         operator fun invoke(context: Context) {
             if(instance!=null) {

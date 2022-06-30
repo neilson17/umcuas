@@ -53,3 +53,15 @@ interface ButtonStepCounter{
 interface ButtonResetCount{
     fun onButtonResetCount(v: View)
 }
+
+interface ButtonRegister{
+    fun onButtonRegister(v: View)
+}
+
+interface ButtonCancelRegister{
+    fun onButtonCancelRegister(v: View)
+}
+
+interface ButtonGoToRegister {
+    fun onButtonGoToRegister(v: View)
+}

@@ -77,6 +77,11 @@
             app:launchSingleTop="false"
             app:popUpTo="@id/itemLogout"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionLoginToRegister"
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/itemLogout"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/doctorDetailFragment"
@@ -121,4 +126,14 @@
         android:name="com.ubaya.s160419037_umc.view.StepCounterFragment"
         android:label="Step Counter"
         tools:layout="@layout/fragment_step_counter" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ubaya.s160419037_umc.view.RegisterFragment"
+        android:label="Register">
+        <action
+            android:id="@+id/action_registerFragment_to_itemLogout"
+            app:destination="@id/itemLogout"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -37,7 +37,6 @@ class MainFragment : Fragment(), SensorEventListener, ButtonAppointmentMain, But
 
     private var lightSensor: Sensor? = null
     private var lightReading = 0f
-    private var firstLightNotification = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,7 +89,6 @@ class MainFragment : Fragment(), SensorEventListener, ButtonAppointmentMain, But
 
     override fun onResume() {
         super.onResume()
-        firstLightNotification = true
         if(lightSensor == null){
             Toast.makeText(activity, "No light sensor detected", Toast.LENGTH_SHORT).show()
         }
@@ -129,9 +127,9 @@ class MainFragment : Fragment(), SensorEventListener, ButtonAppointmentMain, But
                 Sensor.TYPE_LIGHT -> {
                     lightReading = it.values[0]
 
-                    if(firstLightNotification && lightReading < 20) {
+                    if(GlobalData.firstLightNotification && lightReading < 20) {
                         Toast.makeText(context, "You are in a dark room. Please consider lowering your phone screen brightness.", Toast.LENGTH_LONG).show()
-                        firstLightNotification = false
+                        GlobalData.firstLightNotification = false
                     }
                 }
             }
