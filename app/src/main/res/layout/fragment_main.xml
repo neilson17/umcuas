@@ -317,7 +317,7 @@
 <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonCancelTransactionList"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text=""
