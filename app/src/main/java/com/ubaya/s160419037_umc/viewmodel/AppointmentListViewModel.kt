@@ -38,28 +38,6 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
             val db = buildDb(getApplication())
             appointmentsLiveData.value = db.appointmentDao().selectAllAppointment(username)
         }
-
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = GlobalData.php_base_url + "appointments.php?username=$username"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<Appointment>>() {}.type
-//                val result = Gson().fromJson<ArrayList<Appointment>>(it, sType)
-//                appointmentsLiveData.value = result
-//                loadingLiveData.value = false
-//                Log.d("showVolley", it)
-//            },
-//            {
-//                loadingLiveData.value = false
-//                appointmentsLoadErrorLiveData.value = true
-//                Log.d("errorVolley", it.toString())
-//            }
-//        ).apply {
-//            tag = "TAG"
-//        }
-//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {
@@ -71,6 +49,13 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
         launch {
             val db = buildDb(getApplication())
             db.appointmentDao().insertAll(*list.toTypedArray())
+        }
+    }
+
+    fun deleteAppointment(appointment: Appointment) {
+        launch {
+            val db = buildDb(getApplication())
+            db.appointmentDao().deleteAppointment(appointment)
         }
     }
 }

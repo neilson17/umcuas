@@ -36,28 +36,6 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
             val db = buildDb(getApplication())
             transactionsLiveData.value = db.transactionDao().selectAllTransaction(username)
         }
-
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = GlobalData.php_base_url + "transactions.php?username=$username"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<Transaction>>() {}.type
-//                val result = Gson().fromJson<ArrayList<Transaction>>(it, sType)
-//                transactionsLiveData.value = result
-//                loadingLiveData.value = false
-//                Log.d("showVolley", it)
-//            },
-//            {
-//                loadingLiveData.value = false
-//                transactionsLoadErrorLiveData.value = true
-//                Log.d("errorVolley", it.toString())
-//            }
-//        ).apply {
-//            tag = "TAG"
-//        }
-//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {
@@ -69,6 +47,13 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
         launch {
             val db = buildDb(getApplication())
             db.transactionDao().insertAll(*list.toTypedArray())
+        }
+    }
+
+    fun deleteTransaction(transaction: Transaction) {
+        launch {
+            val db = buildDb(getApplication())
+            db.transactionDao().deleteTransaction(transaction)
         }
     }
 }

@@ -65,3 +65,11 @@ interface ButtonCancelRegister{
 interface ButtonGoToRegister {
     fun onButtonGoToRegister(v: View)
 }
+
+interface ButtonDeleteTransaction{
+    fun onButtonDeleteTransaction(v: View)
+}
+
+interface ButtonDeleteAppointment{
+    fun onButtonDeleteAppointment(v: View)
+}

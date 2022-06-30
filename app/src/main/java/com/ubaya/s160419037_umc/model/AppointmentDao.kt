@@ -1,9 +1,6 @@
 package com.ubaya.s160419037_umc.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface AppointmentDao {
@@ -15,4 +12,7 @@ interface AppointmentDao {
 
     @Query("SELECT * FROM appointment WHERE uuid= :id")
     suspend fun selectAppointment(id:Int): Appointment
+
+    @Delete
+    suspend fun deleteAppointment(appointment: Appointment)
 }
