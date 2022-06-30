@@ -7,6 +7,7 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -60,6 +61,29 @@ fun buildDb(context: Context):UmcDatabase{
                 }
             }
         })
+        .addMigrations(MIGRATION_1_2)
         .build()
     return db
 }
+
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "ALTER TABLE doctor ADD COLUMN time TEXT DEFAULT 'Monday 10.00-12.00' NOT NULL"
+        )
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -39,6 +39,8 @@ data class Doctor (
     var doctor_category: String,
     @ColumnInfo(name = "doctor_category_description")
     var doctor_category_description: String,
+    @ColumnInfo(name = "time")
+    var time: String
 )
 
 @Entity
