@@ -23,34 +23,15 @@ import kotlin.coroutines.CoroutineContext
 
 class LoginViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
     val loginLiveData = MutableLiveData<User>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
-
     private var job = Job()
-
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
-
-    fun refresh() {
-        launch {
-//            val db = Room.databaseBuilder(
-//                getApplication(),
-//                UserDatabase::class.java, "newuserdb").build()
-
-//            loginLiveData.value = db.userDAO().selectAllUser()
-        }
-    }
 
     fun fetch(username: String, password: String){
         launch {
             val db = buildDb(getApplication())
             loginLiveData.value = db.userDao().login(username, password)
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
     }
 
     fun update(username: String, name: String, password: String, email: String, phone_number: String, address: String) {

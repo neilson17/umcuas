@@ -58,10 +58,6 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
         var doctorName = CreateConsultationFragmentArgs.fromBundle(requireArguments()).name
         val doctorCategory = CreateConsultationFragmentArgs.fromBundle(requireArguments()).doctorCategory
         val doctorPhoto = CreateConsultationFragmentArgs.fromBundle(requireArguments()).doctorPhoto
-
-//        val adapter = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, arrayListOf<Doctor>())
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinnerDoctors.adapter = adapter
         dataBinding.appointment = Appointment(GlobalData.activeUser.username, doctorId, doctorName, doctorCategory, doctorPhoto)
         dataBinding.dateListener = this
         dataBinding.buttonListener = this
@@ -88,7 +84,7 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
                     workDataOf(
                         "title" to "Appointment Reminder",
                         "message" to "${it.doctor_name} is waiting for your appointment!",
-                        "long_message" to "Your appointment with ${it.doctor_name} (${it.doctor_category}) on ${it.time} is starting soon",
+                        "long_message" to "Your appointment with ${it.doctor_name} (${it.doctor_category}) is starting soon",
                     )
                 )
                 .build()

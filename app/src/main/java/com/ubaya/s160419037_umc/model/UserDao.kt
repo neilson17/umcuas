@@ -7,14 +7,8 @@ import androidx.room.Query
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user")
-    suspend fun selectAllUser(): List<User>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg user: User)
-
-    @Query("SELECT * FROM user WHERE username= :username")
-    suspend fun selectUser(username:String): User
 
     @Query("SELECT * FROM user WHERE username= :username AND password= :password")
     suspend fun login(username:String, password:String): User

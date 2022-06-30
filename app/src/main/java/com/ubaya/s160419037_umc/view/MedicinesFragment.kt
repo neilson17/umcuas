@@ -38,14 +38,6 @@ class MedicinesFragment : Fragment() {
         recViewMedicines.adapter = medicineListAdapter
 
         observeViewModel()
-
-        medicinesRefreshLayout.setOnRefreshListener {
-//            recViewMedicines.visibility = View.GONE
-//            textErrorMedicines.visibility = View.GONE
-//            progressLoadMedicines.visibility = View.VISIBLE
-//            viewModel.refresh()
-//            medicinesRefreshLayout.isRefreshing = false
-        }
     }
 
     private fun observeViewModel() {

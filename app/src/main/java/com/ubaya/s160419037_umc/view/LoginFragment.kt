@@ -61,7 +61,6 @@ class LoginFragment : Fragment(), ButtonLogin, ButtonGoToRegister {
 
     private fun observeViewModel(view: View) {
         viewModel.loginLiveData.observe(viewLifecycleOwner, Observer {
-//            dataBinding.users = it
             if (it != null) {
                 GlobalData.activeUser = it
                 GlobalData.loggedIn = true

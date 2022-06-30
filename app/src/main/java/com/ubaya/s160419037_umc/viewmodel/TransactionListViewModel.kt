@@ -23,7 +23,6 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
     val transactionsLiveData = MutableLiveData<List<Transaction>>()
     val transactionsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-
     private val job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
@@ -36,11 +35,6 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
             val db = buildDb(getApplication())
             transactionsLiveData.value = db.transactionDao().selectAllTransaction(username)
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-//        queue?.cancelAll(TAG)
     }
 
     fun addTransaction(list: List<Transaction>) {

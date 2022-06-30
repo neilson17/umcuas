@@ -45,14 +45,6 @@ class TransactionsFragment : Fragment() {
         recViewTransactions.adapter = transactionListAdapter
 
         observeViewModel()
-
-//        transactionsRefreshLayout.setOnRefreshListener {
-//            recViewTransactions.visibility = View.GONE
-//            textErrorTransactions.visibility = View.GONE
-//            progressLoadTransactions.visibility = View.VISIBLE
-//            viewModel.refresh(GlobalData.activeUser.username!!)
-//            transactionsRefreshLayout.isRefreshing = false
-//        }
     }
 
     private fun observeViewModel() {

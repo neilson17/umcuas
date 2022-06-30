@@ -23,9 +23,7 @@ class MedicineListViewModel(application: Application): AndroidViewModel(applicat
     val medicinesLiveData = MutableLiveData<List<Medicine>>()
     val medicinesLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-
     private var job = Job()
-
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
@@ -37,10 +35,5 @@ class MedicineListViewModel(application: Application): AndroidViewModel(applicat
             val db = buildDb(getApplication())
             medicinesLiveData.value = db.medicineDao().selectAllMedicine()
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-//        queue?.cancelAll(TAG)
     }
 }

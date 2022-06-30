@@ -24,9 +24,7 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
     val newsLiveData = MutableLiveData<List<News>>()
     val newsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-
     private var job = Job()
-
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
@@ -39,10 +37,5 @@ class NewsListViewModel(application: Application): AndroidViewModel(application)
 
             newsLiveData.value = db.newsDao().selectAllNews()
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-//        queue?.cancelAll(TAG)
     }
 }

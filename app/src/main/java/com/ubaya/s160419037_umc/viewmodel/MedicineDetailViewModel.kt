@@ -31,9 +31,4 @@ class MedicineDetailViewModel(application: Application) : AndroidViewModel(appli
             medicineLiveData.value = db.medicineDao().selectMedicine(medicine_id)
         }
     }
-
-    override fun onCleared() {
-        super.onCleared()
-//        queue?.cancelAll(TAG)
-    }
 }

@@ -23,9 +23,6 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
     val appointmentsLiveData = MutableLiveData<List<Appointment>>()
     val appointmentsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
-
     private val job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
@@ -38,11 +35,6 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
             val db = buildDb(getApplication())
             appointmentsLiveData.value = db.appointmentDao().selectAllAppointment(username)
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
     }
 
     fun addAppointment(list: List<Appointment>) {

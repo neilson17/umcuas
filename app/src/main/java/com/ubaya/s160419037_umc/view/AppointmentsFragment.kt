@@ -43,14 +43,6 @@ class AppointmentsFragment : Fragment() {
         recViewAppointments.adapter = appointmentListAdapter
 
         observeViewModel()
-
-//        appointmentsRefreshLayout.setOnRefreshListener {
-//            recViewAppointments.visibility = View.GONE
-//            textErrorAppointments.visibility = View.GONE
-//            progressLoadAppointments.visibility = View.VISIBLE
-//            viewModel.refresh(GlobalData.activeUser.username!!)
-//            appointmentsRefreshLayout.isRefreshing = false
-//        }
     }
 
     private fun observeViewModel() {

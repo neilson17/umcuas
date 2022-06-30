@@ -37,18 +37,6 @@ class NewsFragment : Fragment() {
         recViewNews.adapter = newsListAdapter
 
         observeViewModel()
-
-
-        newsRefreshLayout.setOnRefreshListener {
-//            var news = News("a", "b", "https://neilson.id/projectcollege/umc/image/mask.jpg", "May 28th 2022")
-//            val list = listOf(news)
-//            viewModel.addNews(list)
-//            recViewNews.visibility = View.GONE
-//            textErrorNews.visibility = View.GONE
-//            progressLoadNews.visibility = View.VISIBLE
-//            viewModel.refresh()
-//            newsRefreshLayout.isRefreshing = false
-        }
     }
 
     private fun observeViewModel() {

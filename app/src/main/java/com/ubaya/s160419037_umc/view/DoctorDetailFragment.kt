@@ -39,7 +39,6 @@ class DoctorDetailFragment : Fragment(), ButtonMakeAppointment {
         }
 
         observeViewModel()
-
         dataBinding.buttonMakeAppointment = this
     }
 

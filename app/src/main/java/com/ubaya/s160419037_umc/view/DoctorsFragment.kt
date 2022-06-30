@@ -40,14 +40,6 @@ class DoctorsFragment : Fragment() {
         recViewDoctors.adapter = doctorListAdapter
 
         observeViewModel()
-
-//        doctorsRefreshLayout.setOnRefreshListener {
-//            recViewDoctors.visibility = View.GONE
-//            textErrorDoctors.visibility = View.GONE
-//            progressLoadDoctors.visibility = View.VISIBLE
-//            viewModel.refresh()
-//            doctorsRefreshLayout.isRefreshing = false
-//        }
     }
 
     private fun observeViewModel() {

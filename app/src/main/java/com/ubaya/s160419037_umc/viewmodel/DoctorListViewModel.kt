@@ -16,11 +16,7 @@ class DoctorListViewModel(application: Application): AndroidViewModel(applicatio
     val doctorsLiveData = MutableLiveData<List<Doctor>>()
     val doctorsLoadErrorLiveData = MutableLiveData<Boolean>()
     val loadingLiveData = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
-
     private var job = Job()
-
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
@@ -31,18 +27,6 @@ class DoctorListViewModel(application: Application): AndroidViewModel(applicatio
         launch {
             val db = buildDb(getApplication())
             doctorsLiveData.value = db.doctorDao().selectAllDoctor()
-        }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
-    }
-
-    fun addDoctor(list: List<Doctor>) {
-        launch {
-            val db = buildDb(getApplication())
-            db.doctorDao().insertAll(*list.toTypedArray())
         }
     }
 }
