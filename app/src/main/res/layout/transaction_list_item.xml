@@ -49,7 +49,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:paddingTop="2dp"
-                    android:text="March 3rd 2022. 16.36"
+                    android:text="@{@string/format((long)1*transactions.time * 1000L)}"
                     android:textAppearance="@style/subtitle"
                     android:textColor="#FFFFFF"
                     app:layout_constraintStart_toEndOf="@+id/imageView28"
