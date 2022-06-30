@@ -167,7 +167,7 @@
                     android:layout_marginBottom="16dp"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"
-                    android:text="MESSAGE"
+                    android:text="CANCEL"
                     android:textAppearance="@style/subtitle"
                     android:textSize="12sp"
                     app:cornerRadius="30dp"
