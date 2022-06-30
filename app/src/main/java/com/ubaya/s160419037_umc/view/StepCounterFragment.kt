@@ -57,11 +57,15 @@ class StepCounterFragment : Fragment(), SensorEventListener {
 
         if(accelerometerSensor == null){
             Toast.makeText(activity, "No accelerometer detected", Toast.LENGTH_SHORT).show()
-            return
+        } else {
+            //daftarkan listener
+            Toast.makeText(activity, "Accelerometer enabled :)", Toast.LENGTH_SHORT).show()
+            sensorManager.registerListener(
+                this,
+                accelerometerSensor,
+                SensorManager.SENSOR_DELAY_FASTEST
+            )
         }
-        //daftarkan listener
-        Toast.makeText(activity, "Accelerometer detected", Toast.LENGTH_SHORT).show()
-        sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_FASTEST)
     }
 
     override fun onSensorChanged(p0: SensorEvent?) {

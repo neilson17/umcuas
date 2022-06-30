@@ -1,6 +1,10 @@
 package com.ubaya.s160419037_umc.view
 
 import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -29,10 +34,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.drawer_layout.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_step_counter.*
+import kotlin.math.pow
+import kotlin.math.sqrt
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), SensorEventListener {
     private lateinit var viewModel: AppointmentListViewModel
     private lateinit var viewModelLogin : LoginViewModel
+
+    private lateinit var sensorManager: SensorManager
+
+    private var lightSensor: Sensor? = null
+    private var lightReading = 0f
+    private var firstLightNotification = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +54,13 @@ class MainFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -86,6 +107,25 @@ class MainFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if(lightSensor == null){
+            Toast.makeText(activity, "No light sensor detected", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            //daftarkan listener
+            Toast.makeText(activity, "Light sensor enabled :)", Toast.LENGTH_SHORT).show()
+            sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_FASTEST)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        sensorManager.unregisterListener(this)
+    }
+
     private fun updateHome(){
         textNameHome.text = GlobalData.activeUser.name
         var header = (activity as MainActivity).navView.getHeaderView(0)
@@ -126,4 +166,18 @@ class MainFragment : Fragment() {
             updateHome()
         }
     }
+
+    override fun onSensorChanged(p0: SensorEvent?) {
+        p0?.let{
+            when(it.sensor.type){
+                Sensor.TYPE_LIGHT -> {
+                    lightReading = it.values[0]
+
+                    textStepCounterTitle.text = lightReading.toString()
+                }
+            }
+        }
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) { }
 }
