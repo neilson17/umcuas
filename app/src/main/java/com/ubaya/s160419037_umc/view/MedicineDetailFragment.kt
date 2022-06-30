@@ -15,6 +15,7 @@ import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
 import com.ubaya.s160419037_umc.databinding.FragmentMedicineDetailBinding
 import com.ubaya.s160419037_umc.model.Transaction
+import com.ubaya.s160419037_umc.util.NotificationHelper
 import com.ubaya.s160419037_umc.util.loadImage
 import com.ubaya.s160419037_umc.viewmodel.MedicineDetailViewModel
 import com.ubaya.s160419037_umc.viewmodel.TransactionListViewModel
@@ -66,6 +67,9 @@ class MedicineDetailFragment : Fragment(), ButtonMakeTransaction {
                 val list = listOf(it)
                 viewModelTrans.addTransaction(list)
                 Toast.makeText(v.context, "Transaction created", Toast.LENGTH_SHORT).show()
+
+                NotificationHelper(v.context).createNotification("Transaction Created", "Thanks for purchasing medicine with UMC :)", "Your transaction of ${it.quantity} ${it.medicine_name} ${it.medicine_variant} has been made. Please wait until the medicine is delivered to your house. Stay safe!")
+
                 Navigation.findNavController(v).popBackStack()
             }
             else {

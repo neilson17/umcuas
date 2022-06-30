@@ -89,7 +89,6 @@ class CreateConsultationFragment : Fragment(), ButtonAddConsultationClickListene
                         "title" to "Appointment Reminder",
                         "message" to "${it.doctor_name} is waiting for your appointment!",
                         "long_message" to "Your appointment with ${it.doctor_name} (${it.doctor_category}) on ${it.time} is starting soon",
-                        "url_photo" to "${it.doctor_photo}"
                     )
                 )
                 .build()
