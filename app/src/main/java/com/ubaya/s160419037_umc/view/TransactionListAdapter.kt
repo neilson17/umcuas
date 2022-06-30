@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TransactionListAdapter (val transactionList: ArrayList<Transaction>) : RecyclerView.Adapter<TransactionListAdapter.TransactionViewHolder>() {
+class TransactionListAdapter (val transactionList: ArrayList<Transaction>, val adapterOnClick : (Transaction) -> Unit) : RecyclerView.Adapter<TransactionListAdapter.TransactionViewHolder>(), ButtonDeleteTransaction {
     class TransactionViewHolder(var view: TransactionListItemBinding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
@@ -27,6 +27,7 @@ class TransactionListAdapter (val transactionList: ArrayList<Transaction>) : Rec
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         val transaction = transactionList[position]
         holder.view.transactions = transaction
+        holder.view.buttonDeleteTransactionListener = this
     }
 
     override fun getItemCount() = transactionList.size
@@ -35,5 +36,9 @@ class TransactionListAdapter (val transactionList: ArrayList<Transaction>) : Rec
         transactionList.clear()
         transactionList.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    override fun onButtonDeleteTransaction(v: View, obj: Transaction) {
+        adapterOnClick(obj)
     }
 }

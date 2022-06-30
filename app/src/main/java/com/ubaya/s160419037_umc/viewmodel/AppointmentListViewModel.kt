@@ -56,6 +56,7 @@ class AppointmentListViewModel(application: Application): AndroidViewModel(appli
         launch {
             val db = buildDb(getApplication())
             db.appointmentDao().deleteAppointment(appointment)
+            appointmentsLiveData.value = db.appointmentDao().selectAllAppointment(GlobalData.activeUser.username)
         }
     }
 }

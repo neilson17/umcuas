@@ -1,6 +1,7 @@
 package com.ubaya.s160419037_umc.view
 
 import android.view.View
+import com.ubaya.s160419037_umc.model.Appointment
 import com.ubaya.s160419037_umc.model.Doctor
 import com.ubaya.s160419037_umc.model.Transaction
 import com.ubaya.s160419037_umc.model.User
@@ -67,9 +68,9 @@ interface ButtonGoToRegister {
 }
 
 interface ButtonDeleteTransaction{
-    fun onButtonDeleteTransaction(v: View)
+    fun onButtonDeleteTransaction(v: View, obj: Transaction)
 }
 
 interface ButtonDeleteAppointment{
-    fun onButtonDeleteAppointment(v: View)
+    fun onButtonDeleteAppointment(v: View, obj: Appointment)
 }

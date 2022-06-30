@@ -7,6 +7,9 @@
         <variable
             name="transactions"
             type="com.ubaya.s160419037_umc.model.Transaction" />
+        <variable
+            name="buttonDeleteTransactionListener"
+            type="com.ubaya.s160419037_umc.view.ButtonDeleteTransaction"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,7 +172,8 @@
                     app:cornerRadius="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/cardView8"
+                    android:onClick="@{(view) -> buttonDeleteTransactionListener.onButtonDeleteTransaction(view, transactions)}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

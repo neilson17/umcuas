@@ -10,7 +10,6 @@
         <variable
             name="buttonDeleteAppointmentListener"
             type="com.ubaya.s160419037_umc.view.ButtonDeleteAppointment"/>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -177,7 +176,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/buttonInfoAppointmentList"
                     app:layout_constraintTop_toBottomOf="@+id/cardView7"
-                    android:onClick="@{buttonDeleteAppointmentListener::onButtonDeleteAppointment}"/>
+                    android:onClick="@{(view) -> buttonDeleteAppointmentListener.onButtonDeleteAppointment(view, appointment)}"/>
 
                 <Button
                     android:id="@+id/buttonCallAppointmentList"
@@ -192,7 +191,7 @@
                     app:cornerRadius="30dp"
                     app:layout_constraintBottom_toBottomOf="@+id/buttonCancelAppointmentList"
                     app:layout_constraintEnd_toStartOf="@+id/buttonCancelAppointmentList"
-                    app:layout_constraintTop_toTopOf="@+id/buttonCancelAppointmentList" />
+                    app:layout_constraintTop_toTopOf="@+id/buttonCancelAppointmentList"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

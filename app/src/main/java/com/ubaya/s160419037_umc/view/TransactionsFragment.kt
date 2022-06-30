@@ -21,7 +21,7 @@ import java.util.*
 
 class TransactionsFragment : Fragment() {
     private lateinit var viewModel: TransactionListViewModel
-    private val transactionListAdapter = TransactionListAdapter(arrayListOf())
+    private val transactionListAdapter = TransactionListAdapter(arrayListOf(), {viewModel.deleteTransaction(it)})
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -14,7 +14,7 @@ import com.ubaya.s160419037_umc.model.Appointment
 import com.ubaya.s160419037_umc.util.loadImage
 import kotlinx.android.synthetic.main.appointment_list_item.view.*
 
-class AppointmentListAdapter(val appointmentList: ArrayList<Appointment>) : RecyclerView.Adapter<AppointmentListAdapter.AppointmentViewHolder>() {
+class AppointmentListAdapter(val appointmentList: ArrayList<Appointment>, val adapterOnClick : (Appointment) -> Unit) : RecyclerView.Adapter<AppointmentListAdapter.AppointmentViewHolder>(), ButtonDeleteAppointment {
     class AppointmentViewHolder(var view: AppointmentListItemBinding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
@@ -26,6 +26,7 @@ class AppointmentListAdapter(val appointmentList: ArrayList<Appointment>) : Recy
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val appointment = appointmentList[position]
         holder.view.appointment = appointment
+        holder.view.buttonDeleteAppointmentListener = this
     }
 
     override fun getItemCount() = appointmentList.size
@@ -34,5 +35,9 @@ class AppointmentListAdapter(val appointmentList: ArrayList<Appointment>) : Recy
         appointmentList.clear()
         appointmentList.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    override fun onButtonDeleteAppointment(v: View, obj: Appointment) {
+        adapterOnClick(obj)
     }
 }

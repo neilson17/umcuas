@@ -12,13 +12,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
+import com.ubaya.s160419037_umc.model.Appointment
 import com.ubaya.s160419037_umc.viewmodel.AppointmentListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_appointments.*
 
 class AppointmentsFragment : Fragment() {
     private lateinit var viewModel: AppointmentListViewModel
-    private val appointmentListAdapter = AppointmentListAdapter(arrayListOf())
+    private val appointmentListAdapter = AppointmentListAdapter(arrayListOf(), {viewModel.deleteAppointment(it)})
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

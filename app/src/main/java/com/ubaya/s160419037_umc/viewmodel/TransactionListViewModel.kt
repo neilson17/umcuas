@@ -54,6 +54,7 @@ class TransactionListViewModel(application: Application): AndroidViewModel(appli
         launch {
             val db = buildDb(getApplication())
             db.transactionDao().deleteTransaction(transaction)
+            transactionsLiveData.value = db.transactionDao().selectAllTransaction(GlobalData.activeUser.username)
         }
     }
 }
