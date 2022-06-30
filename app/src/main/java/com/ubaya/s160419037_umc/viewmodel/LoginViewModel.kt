@@ -46,28 +46,17 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
             val db = buildDb(getApplication())
             loginLiveData.value = db.userDao().login(username, password)
         }
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = GlobalData.php_base_url + "users.php?username=$username&password=$password"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<Login>>() {}.type
-//                val result = Gson().fromJson<ArrayList<Login>>(it, sType)
-//                loginLiveData.value = result[0]
-//                Log.d("showVolley", it)
-//            },
-//            {
-//                Log.d("errorVolley", it.toString())
-//            }
-//        ).apply {
-//            tag = "TAG"
-//        }
-//        queue?.add(stringRequest)
     }
 
     override fun onCleared() {
         super.onCleared()
         queue?.cancelAll(TAG)
+    }
+
+    fun update(username: String, name: String, password: String, email: String, phone_number: String, address: String) {
+        launch {
+            val db = buildDb(getApplication())
+            db.userDao().update(username, name, password, email, phone_number, address)
+        }
     }
 }

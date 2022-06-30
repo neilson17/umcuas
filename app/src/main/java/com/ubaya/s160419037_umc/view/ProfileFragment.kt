@@ -6,33 +6,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.ubaya.s160419037_umc.GlobalData
 import com.ubaya.s160419037_umc.R
+import com.ubaya.s160419037_umc.databinding.FragmentProfileBinding
+import com.ubaya.s160419037_umc.model.User
 import com.ubaya.s160419037_umc.util.loadImage
+import com.ubaya.s160419037_umc.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), ButtonUpdateProfile {
+    private lateinit var viewModel: LoginViewModel
+    private lateinit var dataBinding: FragmentProfileBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        dataBinding = FragmentProfileBinding.inflate(inflater, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textUsernameProfile.text = GlobalData.activeUser.username
-        editNameProfile.setText(GlobalData.activeUser.name)
-        editPasswordProfile.setText(GlobalData.activeUser.password)
-        editEmailProfile.setText(GlobalData.activeUser.email)
-        editPhoneProfile.setText(GlobalData.activeUser.phone)
-        editAddressProfile.setText(GlobalData.activeUser.address)
-        imageProfile.loadImage(GlobalData.activeUser.photo_url, progressLoadProfile)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        buttonSaveProfile.setOnClickListener {
-            Toast.makeText(context, "Profile saved successfully!", Toast.LENGTH_SHORT).show()
-        }
+        dataBinding.user = GlobalData.activeUser
+        dataBinding.buttonUpdateProfile = this
+    }
+
+    override fun onButtonUpdateProfile(v: View, obj: User) {
+        viewModel.update(obj.username, obj.name, obj.password, obj.email, obj.phone, obj.address)
+        GlobalData.activeUser = obj
+        Toast.makeText(v.context, "Profile updated!", Toast.LENGTH_SHORT).show()
     }
 }

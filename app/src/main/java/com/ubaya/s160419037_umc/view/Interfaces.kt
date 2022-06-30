@@ -3,6 +3,7 @@ package com.ubaya.s160419037_umc.view
 import android.view.View
 import com.ubaya.s160419037_umc.model.Doctor
 import com.ubaya.s160419037_umc.model.Transaction
+import com.ubaya.s160419037_umc.model.User
 
 interface ButtonAddConsultationClickListener{
     fun onButtonAddConsultation(v: View)
@@ -31,4 +32,8 @@ interface ButtonMakeTransaction{
 
 interface ButtonLogin{
     fun onButtonLogin(v: View)
+}
+
+interface ButtonUpdateProfile{
+    fun onButtonUpdateProfile(v: View, obj:User)
 }

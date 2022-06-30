@@ -109,7 +109,7 @@ class MainFragment : Fragment(), SensorEventListener {
 
     override fun onResume() {
         super.onResume()
-
+        firstLightNotification = true
         if(lightSensor == null){
             Toast.makeText(activity, "No light sensor detected", Toast.LENGTH_SHORT).show()
         }
@@ -173,7 +173,10 @@ class MainFragment : Fragment(), SensorEventListener {
                 Sensor.TYPE_LIGHT -> {
                     lightReading = it.values[0]
 
-                    textStepCounterTitle.text = lightReading.toString()
+                    if(firstLightNotification && lightReading < 20) {
+                        Toast.makeText(context, "You are in a dark room. Please consider lowering your phone screen brightness.", Toast.LENGTH_LONG).show()
+                        firstLightNotification = false
+                    }
                 }
             }
         }
