@@ -37,3 +37,15 @@ interface ButtonLogin{
 interface ButtonUpdateProfile{
     fun onButtonUpdateProfile(v: View, obj:User)
 }
+
+interface ButtonAppointmentMain{
+    fun onButtonAppointmentMain(v: View)
+}
+
+interface ButtonMedicineMain{
+    fun onButtonMedicineMain(v: View)
+}
+
+interface ButtonStepCounter{
+    fun onButtonStepCounter(v: View)
+}

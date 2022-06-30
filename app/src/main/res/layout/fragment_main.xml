@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="buttonAppointmentMain"
+            type="com.ubaya.s160419037_umc.view.ButtonAppointmentMain"/>
+        <variable
+            name="buttonMedicineMain"
+            type="com.ubaya.s160419037_umc.view.ButtonMedicineMain"/>
+        <variable
+            name="buttonStepCounter"
+            type="com.ubaya.s160419037_umc.view.ButtonStepCounter"/>
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -147,7 +161,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{buttonAppointmentMain::onButtonAppointmentMain}"/>
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -220,7 +235,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{buttonMedicineMain::onButtonMedicineMain}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -290,6 +306,8 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="#6A6DB0"
+                android:onClick="@{buttonStepCounter::onButtonStepCounter}"
+                android:text=" "
                 app:cornerRadius="50dp"
                 app:icon="@drawable/ic_baseline_chevron_right_24"
                 app:iconGravity="textStart"
@@ -303,3 +321,4 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

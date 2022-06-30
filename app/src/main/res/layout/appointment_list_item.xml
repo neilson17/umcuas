@@ -159,7 +159,7 @@
                     app:strokeColor="@android:color/transparent" />
 
                 <Button
-                    android:id="@+id/buttonMessageAppointmentList"
+                    android:id="@+id/buttonCancelAppointmentList"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
@@ -186,9 +186,9 @@
                     android:textAppearance="@style/subtitle"
                     android:textSize="12sp"
                     app:cornerRadius="30dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/buttonMessageAppointmentList"
-                    app:layout_constraintEnd_toStartOf="@+id/buttonMessageAppointmentList"
-                    app:layout_constraintTop_toTopOf="@+id/buttonMessageAppointmentList" />
+                    app:layout_constraintBottom_toBottomOf="@+id/buttonCancelAppointmentList"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonCancelAppointmentList"
+                    app:layout_constraintTop_toTopOf="@+id/buttonCancelAppointmentList" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

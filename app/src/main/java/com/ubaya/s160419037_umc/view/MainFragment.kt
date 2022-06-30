@@ -6,7 +6,6 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,17 +17,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.ubaya.s160419037_umc.GlobalData
-import com.ubaya.s160419037_umc.R
-import com.ubaya.s160419037_umc.model.Login
+import com.ubaya.s160419037_umc.databinding.FragmentMainBinding
 import com.ubaya.s160419037_umc.util.loadImage
-import com.ubaya.s160419037_umc.viewmodel.AppointmentListViewModel
 import com.ubaya.s160419037_umc.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawer_header.view.*
@@ -38,9 +29,9 @@ import kotlinx.android.synthetic.main.fragment_step_counter.*
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class MainFragment : Fragment(), SensorEventListener {
-    private lateinit var viewModel: AppointmentListViewModel
+class MainFragment : Fragment(), SensorEventListener, ButtonAppointmentMain, ButtonMedicineMain, ButtonStepCounter {
     private lateinit var viewModelLogin : LoginViewModel
+    private lateinit var dataBinding: FragmentMainBinding
 
     private lateinit var sensorManager: SensorManager
 
@@ -53,7 +44,8 @@ class MainFragment : Fragment(), SensorEventListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        dataBinding = FragmentMainBinding.inflate(inflater, container, false)
+        return dataBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,20 +83,9 @@ class MainFragment : Fragment(), SensorEventListener {
             updateHome()
         }
 
-        buttonAppointmentHome.setOnClickListener {
-            val action = MainFragmentDirections.actionDoctorsFragment()
-            Navigation.findNavController(view).navigate(action)
-        }
-
-        buttonMedicineHome.setOnClickListener {
-            val action = MainFragmentDirections.actionMedicineFragment()
-            Navigation.findNavController(view).navigate(action)
-        }
-
-        buttonStepCounter.setOnClickListener {
-            val action = MainFragmentDirections.actionItemHomeToStepCounterFragment()
-            Navigation.findNavController(view).navigate(action)
-        }
+//        dataBinding.buttonStepCounter = this
+        dataBinding.buttonAppointmentMain = this
+        dataBinding.buttonMedicineMain = this
     }
 
     override fun onResume() {
@@ -131,31 +112,6 @@ class MainFragment : Fragment(), SensorEventListener {
         var header = (activity as MainActivity).navView.getHeaderView(0)
         (header.textUsernameDrawer as TextView).text = GlobalData.activeUser.username
         (header.imageDrawer as ImageView).loadImage(GlobalData.activeUser.photo_url, (header.progressLoadDrawer as ProgressBar))
-
-//        viewModel = ViewModelProvider(this).get(AppointmentListViewModel::class.java)
-//        viewModel.refresh(GlobalData.activeUser.username!!)
-//        viewModel.appointmentsLiveData.observe(viewLifecycleOwner){
-//            if (it.size > 0) {
-//                val appointment = it[it.size - 1]
-//                imageDoctorHome.loadImage(appointment.doctor.photo_url, progressLoadDoctorHome)
-//                textDoctorNameHome.text = appointment.doctor.name
-//                textDoctorDateHome.text = appointment.time
-//                buttonCallHome.setOnClickListener {
-//                    val builder = AlertDialog.Builder(context!!)
-//                    with (builder) {
-//                        setMessage("${appointment.doctor.name} will call you back in a minute!\nSorry for the inconvenience :(")
-//                        setTitle("Call Failed")
-//                        setPositiveButton("OK", null)
-//                        create().show()
-//                    }
-//                }
-
-//                textNoAppHome.visibility = View.GONE
-//            }
-//            else {
-//                cardAppointmentsHome.visibility = View.GONE
-//            }
-//        }
     }
 
     private fun observeViewModelLogin(){
@@ -183,4 +139,19 @@ class MainFragment : Fragment(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) { }
+
+    override fun onButtonAppointmentMain(v: View) {
+        val action = MainFragmentDirections.actionDoctorsFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun onButtonMedicineMain(v: View) {
+        val action = MainFragmentDirections.actionMedicineFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun onButtonStepCounter(v: View) {
+        val action = MainFragmentDirections.actionItemHomeToStepCounterFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
 }
