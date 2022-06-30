@@ -110,7 +110,7 @@
                     android:layout_marginStart="4dp"
                     android:fontFamily="@font/poppins_bold"
                     android:paddingTop="2dp"
-                    android:text="Monday, 10.00-12.00"
+                    android:text="@{@string/format(appointment.time * 1000L)}"
                     android:textAppearance="@style/subtitle"
                     android:textColor="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView29"
