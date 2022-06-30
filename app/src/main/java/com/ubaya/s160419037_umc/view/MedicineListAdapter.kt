@@ -26,16 +26,6 @@ class MedicineListAdapter (val medicineList: ArrayList<Medicine>) : RecyclerView
         val medicine = medicineList[position]
         holder.view.medicine = medicine
         holder.view.buttonDetailMedListener = this
-//        with (holder.view){
-//            textMedicineNameList.text = medicine.name
-//            textMedicineVariantList.text = medicine.variant
-//            textMedicinePriceList.text = medicine.price.toString()
-//            imageMedicineList.loadImage(medicine.photo_url, progressLoadImageMedicineList)
-//            buttonMedicineDetailList.setOnClickListener {
-//                val action = MedicinesFragmentDirections.actionMedicineDetailFragment(medicine.uuid)
-//                Navigation.findNavController(it).navigate(action)
-//            }
-//        }
     }
 
     override fun getItemCount() = medicineList.size

@@ -26,28 +26,6 @@ class AppointmentListAdapter(val appointmentList: ArrayList<Appointment>) : Recy
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val appointment = appointmentList[position]
         holder.view.appointment = appointment
-        with (holder.view){
-//            textDateAppointmentList.text = appointment.time
-//            textDoctorNameAppointmentList.text = appointment.doctor.name
-//            textDoctorCategoryAppointmentList.text = appointment.doctor.doctor_category
-//            imageAppointmentList.loadImage(appointment.doctor.photo_url, progressLoadAppointmentList)
-//            buttonInfoAppointmentList.setOnClickListener {
-//                val action = AppointmentsFragmentDirections.actionDoctorDetailFragmentFromAppointments(appointment.doctor.uuid)
-//                Navigation.findNavController(it).navigate(action)
-//            }
-//            buttonCallAppointmentList.setOnClickListener {
-//                val builder = AlertDialog.Builder(context)
-//                with (builder) {
-//                    setMessage("${appointment.doctor.name} will call you back in a minute!\nSorry for the inconvenience :(")
-//                    setTitle("Call Failed")
-//                    setPositiveButton("OK", null)
-//                    create().show()
-//                }
-//            }
-//            buttonMessageAppointmentList.setOnClickListener {
-//                Toast.makeText(context, "${appointment.doctor.name} says Hi to you!", Toast.LENGTH_SHORT).show()
-//            }
-        }
     }
 
     override fun getItemCount() = appointmentList.size

@@ -55,26 +55,6 @@ class MedicineDetailFragment : Fragment(), ButtonMakeTransaction {
             dataBinding.transactions = Transaction(GlobalData.activeUser.username.toString(), it.name, it.variant, it.photo_url, it.price, 1, 0)
 
         })
-//        {
-//            with (it){
-//                textMedicineNameDetail.text = name
-//                textMedicineVariantDetail.text = variant
-//                textMedicineCategoryDetail.text = medicine_category
-//                textMedicinePriceDetail.text = price.toString()
-//                textMedicineDescriptionDetail.text = description
-//                imageMedicineDetail.loadImage(photo_url, progressLoadMedicineDetail)
-//
-//                buttonPurchase.setOnClickListener {
-//                    val builder = androidx.appcompat.app.AlertDialog.Builder(context!!)
-//                    with (builder) {
-//                        setMessage("Your order on $name has been made.\nChill at home ~ we are going to deliver your medicine!")
-//                        setTitle("All Set!")
-//                        setPositiveButton("OK", null)
-//                        create().show()
-//                    }
-//                }
-//            }
-//        }
     }
 
     override fun onButtonMakeTransaction(v: View, obj: Transaction) {

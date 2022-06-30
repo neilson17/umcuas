@@ -63,21 +63,5 @@ class NewsFragment : Fragment() {
                 progressLoadNews.visibility = View.GONE
             }
         })
-//        viewModel.newsLiveData.observe(viewLifecycleOwner){
-//            newsListAdapter.updateNewsList(it)
-//        }
-//        viewModel.newsLoadErrorLiveData.observe(viewLifecycleOwner){
-//            textErrorNews.visibility = if (it) View.VISIBLE else View.GONE
-//        }
-//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-//            if (it){
-//                progressLoadNews.visibility = View.VISIBLE
-//                recViewNews.visibility = View.GONE
-//            }
-//            else {
-//                progressLoadNews.visibility = View.GONE
-//                recViewNews.visibility = View.VISIBLE
-//            }
-//        }
     }
 }

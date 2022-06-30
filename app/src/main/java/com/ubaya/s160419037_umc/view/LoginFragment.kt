@@ -56,16 +56,6 @@ class LoginFragment : Fragment(), ButtonLogin {
         dataBinding.users = User("","", "", "", "", "", "")
         dataBinding.buttonLoginListener = this
 
-//        buttonLogin.setOnClickListener {
-//            var username = editUsernameLogin.text.toString()
-//            var password = editPasswordLogin.text.toString()
-//
-//            if (username != "" && password != "") {
-//                viewModel.fetch(username, password)
-//                observeViewModel(view)
-//            } else Toast.makeText(context, "Please fill in your Username or Password first!", Toast.LENGTH_SHORT).show()
-//        }
-
 //        buttonSignup.setOnClickListener {
 //            val builder = AlertDialog.Builder(context!!)
 //            with (builder) {
@@ -104,36 +94,10 @@ class LoginFragment : Fragment(), ButtonLogin {
             }
 
         })
-//        viewModel.loginLiveData.observe(viewLifecycleOwner){
-//            if(it.status == "success"){
-//                GlobalData.activeUser = it.user!!
-//                GlobalData.loggedIn = true
-//
-//                var header = (activity as MainActivity).navView.getHeaderView(0)
-//                (header.textUsernameDrawer as TextView).text = it.user!!.username
-//                (header.imageDrawer as ImageView).loadImage(it.user!!.photo_url, (header.progressLoadDrawer as ProgressBar))
-//
-//                var shared = (activity as MainActivity).getSharedPreferences((activity as MainActivity).packageName, Context.MODE_PRIVATE)
-//                var editor = shared.edit()
-//                editor.putString("USERNAME", it.user!!.username).apply()
-//                editor.putString("PASSWORD", it.user!!.password).apply()
-//
-//                (activity as MainActivity).supportActionBar?.show()
-//                (activity as MainActivity).bottomNav.visibility = View.VISIBLE
-//
-//                val action = LoginFragmentDirections.actionHomeFragment()
-//                Navigation.findNavController(v).navigate(action)
-//            }else{
-//                Toast.makeText(context, "Your Username or Password is wrong!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
 
     override fun onButtonLogin(v: View) {
         dataBinding.users?.let {
-//            var username = editUsernameLogin.text.toString()
-//            var password = editPasswordLogin.text.toString()
-
             if (it.username != "" && it.password != "") {
                 viewModel.fetch(it.username, it.password)
                 observeViewModel(v)

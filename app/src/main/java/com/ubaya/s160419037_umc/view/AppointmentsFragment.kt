@@ -70,26 +70,5 @@ class AppointmentsFragment : Fragment() {
                 textEmptyAppointments.visibility = View.GONE
             }
         })
-//        viewModel.appointmentsLiveData.observe(viewLifecycleOwner){
-//            appointmentListAdapter.updateAppointmentList(it)
-//
-//            if(it.size == 0){
-//                imageEmptyAppointments.visibility = View.VISIBLE
-//                textEmptyAppointments.visibility = View.VISIBLE
-//            }
-//        }
-//        viewModel.appointmentsLoadErrorLiveData.observe(viewLifecycleOwner){
-//            textErrorAppointments.visibility = if (it) View.VISIBLE else View.GONE
-//        }
-//        viewModel.loadingLiveData.observe(viewLifecycleOwner){
-//            if (it){
-//                progressLoadAppointments.visibility = View.VISIBLE
-//                recViewAppointments.visibility = View.GONE
-//            }
-//            else {
-//                progressLoadAppointments.visibility = View.GONE
-//                recViewAppointments.visibility = View.VISIBLE
-//            }
-//        }
     }
 }

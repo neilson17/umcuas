@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="buttonResetCountListener"
+            type="com.ubaya.s160419037_umc.view.ButtonResetCount" />
+
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -131,7 +141,8 @@
         app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textStepCount" />
+        app:layout_constraintTop_toBottomOf="@+id/textStepCount"
+        android:onClick="@{buttonResetCountListener::onButtonResetCount}"/>
 
     <ImageView
         android:id="@+id/imageView34"
@@ -147,3 +158,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonReset" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

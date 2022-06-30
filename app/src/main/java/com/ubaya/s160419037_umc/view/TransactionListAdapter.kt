@@ -27,15 +27,6 @@ class TransactionListAdapter (val transactionList: ArrayList<Transaction>) : Rec
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         val transaction = transactionList[position]
         holder.view.transactions = transaction
-
-//        with (holder.view){
-//            textDateTransactionList.text = transaction.time
-//            textMedicineNameTransactionList.text = transaction.medicine.name
-//            textMedicineVariantTransactionList.text = transaction.medicine.variant
-//            textPriceQuantityTransactionList.text = transaction.medicine.price.toString() + " x" + transaction.quantity.toString()
-//            textTotalTransactionList.text = "Total ${transaction.total}"
-//            imageTransactionList.loadImage(transaction.medicine.photo_url, progressLoadTransactionList)
-//        }
     }
 
     override fun getItemCount() = transactionList.size

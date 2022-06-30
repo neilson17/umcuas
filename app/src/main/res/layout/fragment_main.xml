@@ -300,21 +300,33 @@
                 app:layout_constraintStart_toEndOf="@+id/cardView9"
                 app:layout_constraintTop_toTopOf="@+id/cardView9" />
 
+<!--            <Button-->
+<!--                android:id="@+id/buttonStepCounter"-->
+<!--                android:layout_width="42dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:backgroundTint="#6A6DB0"-->
+<!--                android:onClick="@{buttonStepCounter::onButtonStepCounter}"-->
+<!--                android:text=" "-->
+<!--                app:cornerRadius="50dp"-->
+<!--                app:icon="@drawable/ic_baseline_chevron_right_24"-->
+<!--                app:iconGravity="textStart"-->
+<!--                app:iconPadding="0dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
             <Button
-                android:id="@+id/buttonStepCounter"
-                android:layout_width="42dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#6A6DB0"
-                android:onClick="@{buttonStepCounter::onButtonStepCounter}"
-                android:text=" "
-                app:cornerRadius="50dp"
-                app:icon="@drawable/ic_baseline_chevron_right_24"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text=""
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@android:color/transparent"
+                android:onClick="@{buttonStepCounter::onButtonStepCounter}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
